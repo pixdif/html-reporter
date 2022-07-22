@@ -21,6 +21,7 @@ module.exports = {
 		'@typescript-eslint',
 	],
 	rules: {
+		'consistent-return': 'off',
 		'import/no-unresolved': 'off',
 		indent: [
 			'error',
@@ -29,6 +30,27 @@ module.exports = {
 		'linebreak-style': 'off',
 		'no-plusplus': 'off',
 		'no-tabs': 'off',
+		'no-undef': 'off',
 		'no-unused-vars': 'off',
+		'prefer-arrow-callback': 'off',
+		'react/jsx-filename-extension': [
+			'error',
+			{
+				extensions: [
+					'.tsx',
+				],
+			},
+		],
+		'react/jsx-indent': [
+			'error',
+			'tab',
+		],
+		'react/jsx-indent-props': [
+			'error',
+			'tab',
+		],
+		'react/jsx-props-no-spreading': 'off',
+		'react/prop-types': 'off',
+		'react/require-default-props': 'off',
 	},
 };

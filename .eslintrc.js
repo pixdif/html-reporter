@@ -21,11 +21,14 @@ module.exports = {
 		'@typescript-eslint',
 	],
 	rules: {
+		'import/no-unresolved': 'off',
 		indent: [
 			'error',
 			'tab',
 		],
 		'linebreak-style': 'off',
+		'no-plusplus': 'off',
 		'no-tabs': 'off',
+		'no-unused-vars': 'off',
 	},
 };

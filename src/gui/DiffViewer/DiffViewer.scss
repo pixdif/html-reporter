@@ -1,0 +1,73 @@
+
+.diff-viewer {
+	margin: 2em 0;
+
+	h2 {
+		font-size: 10pt;
+		font-family: 'Courier New', Courier, monospace;
+		text-align: center;
+	}
+
+	.control-panel {
+		text-align: right;
+		margin-right: 5em;
+
+		.threshold {
+			&::before {
+				margin: 0 0.4em;
+				content: '(≤';
+			}
+
+			&::after {
+				content: '%)';
+			}
+		}
+	}
+
+	h3 {
+		font-size: 10pt;
+		font-weight: normal;
+	}
+
+	ul.page-list > li {
+		list-style: none;
+		padding: 0;
+		margin: 20px;
+
+		h4 {
+			text-align: center;
+			font-weight: normal;
+
+			a {
+				color: rgb(192, 192, 192);
+			}
+
+			em {
+				font-style: normal;
+				font-weight: normal;
+				margin: 0 0.5em;
+			}
+
+			.ratio {
+				&::before {
+					content: '(';
+				}
+
+				&::after {
+					content: '%)';
+				}
+			}
+		}
+
+		&.unmatched {
+			h4,
+			h4 a{
+				color: #d53f3a;
+			}
+		}
+	}
+
+	.button-area {
+		text-align: center;
+	}
+}

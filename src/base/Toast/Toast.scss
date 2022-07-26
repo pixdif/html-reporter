@@ -1,0 +1,34 @@
+
+.toast {
+	position: fixed;
+	top: calc(50% + 20px);
+	left: 50%;
+	width: 20%;
+	line-height: 36px;
+	margin-left: -150px;
+	opacity: 0.5;
+	transition: top 0.3s, opacity 0.3s;
+	background: rgb(71, 164, 71);
+	color: white;
+	font-size: 11pt;
+	padding: 0.5em 1.5em;
+
+	&.appear {
+		opacity: 1;
+		top: 50%;
+	}
+
+	&.disappear {
+		opacity: 0;
+		top: 50%;
+	}
+
+	&.info {
+		background: rgb(237, 156, 40);
+	}
+
+	&.error,
+	&.warning {
+		background: rgb(213, 63, 58);
+	}
+}

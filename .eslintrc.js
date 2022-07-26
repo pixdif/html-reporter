@@ -22,6 +22,15 @@ module.exports = {
 	],
 	rules: {
 		'consistent-return': 'off',
+		'import/extensions': [
+			'error',
+			{
+				ts: 'never',
+				tsx: 'never',
+				js: 'never',
+				jsx: 'never',
+			},
+		],
 		'import/no-unresolved': 'off',
 		indent: [
 			'error',

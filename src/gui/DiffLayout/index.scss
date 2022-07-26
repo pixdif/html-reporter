@@ -1,0 +1,10 @@
+.diff-layout {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+
+	.image-viewer {
+		flex-grow: 1;
+		flex-basis: 0;
+	}
+}

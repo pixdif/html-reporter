@@ -1,0 +1,15 @@
+.image-viewer {
+	cursor: pointer;
+	position: relative;
+	overflow: auto;
+
+	img {
+		display: block;
+		width: 100%;
+
+		&.error {
+			background: rgba(255, 255, 255, 0.1);
+			height: 100%;
+		}
+	}
+}

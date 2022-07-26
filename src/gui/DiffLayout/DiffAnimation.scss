@@ -1,0 +1,62 @@
+.diff-animation {
+	position: relative;
+
+	.overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		min-height: 100%;
+
+		&.gray {
+			background: rgba(0, 0, 0, 0.6);
+		}
+	}
+
+	img {
+		display: block;
+	}
+
+	.baseline {
+		&.error {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.actual {
+		animation-name: bling;
+		animation-duration: 1s;
+		animation-iteration-count: infinite;
+		animation-timing-function: steps(1, end);
+
+		&.error {
+			display: none;
+		}
+	}
+
+	.diff {
+		animation-name: bling;
+		animation-duration: 2s;
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-in-out;
+
+		&.error {
+			display: none;
+		}
+	}
+}
+
+@keyframes bling {
+	0% {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}

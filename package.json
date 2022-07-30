@@ -7,7 +7,7 @@
     "start": "webpack serve --mode=development",
     "build": "webpack",
     "debug": "webpack --mode=development",
-    "test": "npm run lint",
+    "test": "npm run lint && playwright test",
     "lint": "eslint --ext=ts,tsx,js ."
   },
   "repository": {
@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@pixdif/model": "^0.1.1",
+    "@playwright/test": "^1.24.2",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.30.7",

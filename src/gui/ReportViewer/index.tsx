@@ -13,7 +13,7 @@ interface ReportViewerProps {
 function ReportViewer(props: ReportViewerProps): JSX.Element {
 	const { report } = props;
 	return (
-		<div className="test-viewer">
+		<div className="report-viewer">
 			<ProfileArea report={report} />
 			<ReportTable report={report} />
 		</div>

@@ -87,7 +87,7 @@ export default function DiffViewer(props: DiffViewerProps): JSX.Element {
 					<span className="threshold">{thresholdText}</span>
 				</label>
 			</div>
-			<h3 className="composed-layout">
+			<h3 className="diff-layout">
 				<p><a href={data.baseline} target="_blank" rel="noreferrer">Baseline</a></p>
 				<p>Difference</p>
 				<p><a href={data.actual} target="_blank" rel="noreferrer">Output</a></p>

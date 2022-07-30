@@ -1,0 +1,42 @@
+
+.report-viewer {
+	text-align: center;
+
+	.brief {
+		height: 3em;
+		line-height: 3em;
+
+		.percent::after {
+			content: '%';
+		}
+
+		.progress-bar {
+			.current::after {
+				content: ' / ';
+			}
+		}
+
+		dl {
+			display: inline;
+			margin: 0;
+			padding: 0;
+
+			dt {
+				display: inline;
+				margin: 0 0.5em 0 0;
+
+				&::after {
+					content: ':';
+				}
+			}
+			dd {
+				display: inline;
+				margin: 0 3em 0 0;
+			}
+		}
+	}
+
+	td.url {
+		text-align: left;
+	}
+}

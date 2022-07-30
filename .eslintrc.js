@@ -36,8 +36,13 @@ module.exports = {
 			'error',
 			'tab',
 		],
+		'jsx-a11y/label-has-associated-control': 'off',
 		'linebreak-style': 'off',
 		'no-plusplus': 'off',
+		'no-restricted-syntax': [
+			'error',
+			'WithStatement',
+		],
 		'no-tabs': 'off',
 		'no-undef': 'off',
 		'no-unused-vars': 'off',

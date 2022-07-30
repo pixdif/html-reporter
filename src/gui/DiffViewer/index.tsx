@@ -1,17 +1,23 @@
 import React from 'react';
 
 import {
+	MessageLevel,
 	TestReport,
 	TestStatus,
 } from '@pixdif/model';
 
 import Client from '../../api/Client';
-import Clickable from '../../base/Clickable';
+import { Clickable } from '../../base/Clickable';
 import { makeToast } from '../../base/Toast';
 
 import DiffLayout from '../DiffLayout';
 
-import './DiffViewer.scss';
+import './styles.scss';
+
+interface Message {
+	message: string;
+	level: MessageLevel;
+}
 
 interface DiffViewerProps {
 	report: TestReport;
@@ -50,7 +56,7 @@ export default function DiffViewer(props: DiffViewerProps): JSX.Element {
 		try {
 			await client.connect();
 			const currentDir = getCurrentDir();
-			const res = await client.updateBaseline(`${currentDir}/${data.baseline}`, `${currentDir}/${data.actual}`);
+			const res = await client.updateBaseline(`${currentDir}/${data.baseline}`, `${currentDir}/${data.actual}`) as Message;
 			makeToast(res.message, res.level);
 		} catch (error) {
 			makeToast('Failed to connect to the server. Please run `node server`', 'error');
@@ -116,10 +122,9 @@ export default function DiffViewer(props: DiffViewerProps): JSX.Element {
 			</ul>
 			{(data.status === TestStatus.BaselineNotFound || data.status === TestStatus.Mismatched) && (
 				<div className="button-area">
-					<Clickable
+					<Clickable<HTMLButtonElement>
 						component="button"
-						type="button"
-						onClick={updateBaseline}
+						onTrigger={updateBaseline}
 					>
 						{data.status === TestStatus.BaselineNotFound ? 'Add Baseline' : 'Update Baseline'}
 					</Clickable>

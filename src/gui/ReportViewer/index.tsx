@@ -6,11 +6,11 @@ import ReportTable from './ReportTable';
 
 import './index.scss';
 
-interface TestViewerProps {
+interface ReportViewerProps {
 	report: TestReport;
 }
 
-function TestViewer(props: TestViewerProps): JSX.Element {
+function ReportViewer(props: ReportViewerProps): JSX.Element {
 	const { report } = props;
 	return (
 		<div className="test-viewer">
@@ -20,4 +20,4 @@ function TestViewer(props: TestViewerProps): JSX.Element {
 	);
 }
 
-export default TestViewer;
+export default ReportViewer;

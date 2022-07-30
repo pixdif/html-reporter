@@ -1,7 +1,9 @@
 import React from 'react';
 
-import TestReport from '../../../model/TestReport';
-import TestStatus from '../../../model/TestStatus';
+import {
+	TestReport,
+	TestStatus,
+} from '@pixdif/model';
 
 function countItem<Type>(arr: Type[], condition: (e: Type) => boolean): number {
 	let num = 0;

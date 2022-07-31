@@ -1,6 +1,6 @@
 {
   "name": "@pixdif/html-reporter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "PixDif HTML Reporter",
   "main": "dist",
   "scripts": {

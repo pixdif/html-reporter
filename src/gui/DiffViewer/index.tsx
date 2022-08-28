@@ -98,7 +98,7 @@ export default function DiffViewer(props: DiffViewerProps): JSX.Element {
 						return null;
 					}
 
-					let className;
+					let className: string;
 					if (!matchedHidden) {
 						className = ratio <= threshold ? 'matched' : 'unmatched';
 					}

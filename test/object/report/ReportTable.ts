@@ -14,4 +14,8 @@ export default class ReportTable extends BasicLocator {
 	getShowMatchedCases() {
 		return this.locator('thead input[type="checkbox"][name="show-matched-cases"]');
 	}
+
+	getShowMatchedPages() {
+		return this.locator('thead input[type="checkbox"][name="show-matched-pages"]');
+	}
 }

@@ -77,6 +77,19 @@ test('View a report', async ({ context, page }) => {
 		expect(await letter.getExpectedPath()).toBe('baseline/category/Letter.pdf');
 		expect(await letter.getActualPath()).toBe('output/category/Letter.pdf');
 		expect(await letter.getStatus()).toBe('Yes');
+		expect(await letter.getDiffs().textContent()).toBe('');
+	});
+
+	await test.step('Toggle matched pages', async () => {
+		const checkbox = table.getShowMatchedPages();
+		await checkbox.click();
+
+		await page.screenshot({
+			path: 'output/report-all-pages.png',
+		});
+
+		const letter = table.getRow(1);
+		expect(await letter.getDiffs().textContent()).toBe('0.000%');
 	});
 
 	await test.step('Open a specific test case', async () => {

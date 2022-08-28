@@ -1,8 +1,13 @@
 import fs from 'fs';
 import fsp from 'fs/promises';
 import path from 'path';
+import util from 'util';
+import rimrafAsync from 'rimraf';
 import { expect, test } from '@playwright/test';
+
 import ReportViewer from './object/ReportViewer';
+
+const rimraf = util.promisify(rimrafAsync);
 
 async function cp(from: string, to: string): Promise<void> {
 	const statFrom = fs.statSync(from);
@@ -19,10 +24,11 @@ async function cp(from: string, to: string): Promise<void> {
 }
 
 test.beforeAll(async () => {
-	if (!fs.existsSync('output')) {
-		await fsp.mkdir('output');
+	if (fs.existsSync('output')) {
+		await rimraf('output');
 	}
 
+	await fsp.mkdir('output');
 	await Promise.all([
 		cp('test/sample', 'output'),
 		cp('dist', 'output'),

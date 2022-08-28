@@ -2,6 +2,7 @@ import fs from 'fs';
 import fsp from 'fs/promises';
 import path from 'path';
 import { expect, test } from '@playwright/test';
+import ReportViewer from './object/ReportViewer';
 
 async function cp(from: string, to: string): Promise<void> {
 	const statFrom = fs.statSync(from);
@@ -29,35 +30,36 @@ test.beforeAll(async () => {
 });
 
 test('View a report', async ({ context, page }) => {
+	const report = new ReportViewer(page);
+	const table = report.getTable();
+
 	await test.step('Open a report', async () => {
 		await page.goto(`file://${path.resolve('output/index.html')}`);
 		await page.screenshot({
 			path: 'output/report.png',
 		});
 
-		const rows = page.locator('table tbody tr');
+		const rows = table.getRows();
 		expect(await rows.count()).toBe(5);
 	});
 
 	await test.step('Check A5', async () => {
-		const a5 = page.locator('table tbody tr').nth(0).locator('td');
-		expect(await a5.nth(0).textContent()).toBe('A5.pdf');
-		expect(await a5.nth(1).locator('a').getAttribute('href')).toBe('baseline/A5.pdf');
-		expect(await a5.nth(2).locator('a').getAttribute('href')).toBe('output/A5.pdf');
+		const a5 = table.getRow(0);
+		expect(await a5.getPath()).toBe('A5.pdf');
+		expect(await a5.getExpectedPath()).toBe('baseline/A5.pdf');
+		expect(await a5.getActualPath()).toBe('output/A5.pdf');
 	});
 
 	await test.step('Check Two to One', async () => {
-		const letter = page.locator('table tbody tr').nth(1).locator('td');
-		expect(await letter.nth(0).textContent()).toBe('category/Two to One.pdf');
-		expect(await letter.nth(1).locator('a').getAttribute('href')).toBe('baseline/category/Two to One.pdf');
-		expect(await letter.nth(2).locator('a').getAttribute('href')).toBe('output/category/Two to One.pdf');
+		const letter = table.getRow(1);
+		expect(await letter.getPath()).toBe('category/Two to One.pdf');
+		expect(await letter.getExpectedPath()).toBe('baseline/category/Two to One.pdf');
+		expect(await letter.getActualPath()).toBe('output/category/Two to One.pdf');
 	});
 
 	await test.step('Open a specific test case', async () => {
-		const a5 = page.locator('table tbody tr', {
-			has: page.locator('td', { hasText: 'A5.pdf' }),
-		});
-		const viewAll = a5.locator('a', { hasText: 'View All' });
+		const a5 = table.getRow(0);
+		const viewAll = a5.getViewAll();
 		await viewAll.click();
 
 		await context.waitForEvent('page');

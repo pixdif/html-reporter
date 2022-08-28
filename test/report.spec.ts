@@ -35,8 +35,22 @@ test('View a report', async ({ context, page }) => {
 			path: 'output/report.png',
 		});
 
-		const rows = await page.$$('table tbody tr');
-		expect(rows.length).toBe(5);
+		const rows = page.locator('table tbody tr');
+		expect(await rows.count()).toBe(5);
+	});
+
+	await test.step('Check A5', async () => {
+		const a5 = page.locator('table tbody tr').nth(0).locator('td');
+		expect(await a5.nth(0).textContent()).toBe('A5.pdf');
+		expect(await a5.nth(1).locator('a').getAttribute('href')).toBe('baseline/A5.pdf');
+		expect(await a5.nth(2).locator('a').getAttribute('href')).toBe('output/A5.pdf');
+	});
+
+	await test.step('Check Two to One', async () => {
+		const letter = page.locator('table tbody tr').nth(1).locator('td');
+		expect(await letter.nth(0).textContent()).toBe('category/Two to One.pdf');
+		expect(await letter.nth(1).locator('a').getAttribute('href')).toBe('baseline/category/Two to One.pdf');
+		expect(await letter.nth(2).locator('a').getAttribute('href')).toBe('output/category/Two to One.pdf');
 	});
 
 	await test.step('Open a specific test case', async () => {

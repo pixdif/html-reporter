@@ -93,11 +93,11 @@ class Client {
 
 	/**
 	 * Update a PDF baseline
-	 * @param baseline
-	 * @param output
+	 * @param expected
+	 * @param actual
 	 */
-	updateBaseline(baseline: string, output: string): Promise<unknown> {
-		return this.send(Command.UpdateBaseline, { baseline, output });
+	updateSnapshot(expected: string, actual: string): Promise<unknown> {
+		return this.send(Command.UpdateSnapshot, { expected, actual });
 	}
 }
 

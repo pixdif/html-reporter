@@ -16,7 +16,7 @@ interface StatusIconProps {
 function StatusIcon(props: StatusIconProps): JSX.Element | null {
 	const { status, progress } = props;
 
-	if (status === TestStatus.Started) {
+	if (status === TestStatus.InProgress) {
 		if (!progress) {
 			return null;
 		}
@@ -59,8 +59,8 @@ export default function ReportRow(props: ReportRowProps): JSX.Element | null {
 
 	const {
 		path,
-		baseline,
-		actual: output,
+		expected,
+		actual,
 		executionTime,
 		diffs = [],
 		status,
@@ -76,10 +76,10 @@ export default function ReportRow(props: ReportRowProps): JSX.Element | null {
 		<tr>
 			<td className="url" title={comment}>{path}</td>
 			<td>
-				<a href={baseline} target="_blank" rel="noreferrer">View</a>
+				<a href={expected} target="_blank" rel="noreferrer">View</a>
 			</td>
 			<td>
-				<a href={output} target="_blank" rel="noreferrer">View</a>
+				<a href={actual} target="_blank" rel="noreferrer">View</a>
 			</td>
 			<td>
 				{executionTime !== undefined && (executionTime / 1000).toFixed(3)}
@@ -88,7 +88,7 @@ export default function ReportRow(props: ReportRowProps): JSX.Element | null {
 				<StatusIcon status={status} />
 			</td>
 			<td className="view-all">
-				{status !== TestStatus.OutputNotFound && (
+				{status !== TestStatus.ActualNotFound && (
 					<a target="_blank" rel="noreferrer" href={viewerUrl}>View All</a>
 				)}
 			</td>

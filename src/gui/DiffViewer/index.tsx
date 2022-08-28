@@ -56,7 +56,7 @@ export default function DiffViewer(props: DiffViewerProps): JSX.Element {
 		try {
 			await client.connect();
 			const currentDir = getCurrentDir();
-			const res = await client.updateBaseline(`${currentDir}/${data.baseline}`, `${currentDir}/${data.actual}`) as Message;
+			const res = await client.updateSnapshot(`${currentDir}/${data.expected}`, `${currentDir}/${data.actual}`) as Message;
 			makeToast(res.message, res.level);
 		} catch (error) {
 			makeToast('Failed to connect to the server. Please run `node server`', 'error');
@@ -88,7 +88,7 @@ export default function DiffViewer(props: DiffViewerProps): JSX.Element {
 				</label>
 			</div>
 			<h3 className="diff-layout">
-				<p><a href={data.baseline} target="_blank" rel="noreferrer">Baseline</a></p>
+				<p><a href={data.expected} target="_blank" rel="noreferrer">Baseline</a></p>
 				<p>Difference</p>
 				<p><a href={data.actual} target="_blank" rel="noreferrer">Output</a></p>
 			</h3>
@@ -120,13 +120,13 @@ export default function DiffViewer(props: DiffViewerProps): JSX.Element {
 					);
 				})}
 			</ul>
-			{(data.status === TestStatus.BaselineNotFound || data.status === TestStatus.Mismatched) && (
+			{(data.status === TestStatus.ExpectedNotFound || data.status === TestStatus.Mismatched) && (
 				<div className="button-area">
 					<Clickable<HTMLButtonElement>
 						component="button"
 						onTrigger={updateBaseline}
 					>
-						{data.status === TestStatus.BaselineNotFound ? 'Add Baseline' : 'Update Baseline'}
+						{data.status === TestStatus.ExpectedNotFound ? 'Add Baseline' : 'Update Baseline'}
 					</Clickable>
 				</div>
 			)}

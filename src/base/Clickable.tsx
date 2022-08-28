@@ -41,6 +41,6 @@ export function Clickable<T extends HTMLElement = HTMLDivElement>({
 	);
 }
 
-export default React.forwardRef<HTMLElement, ClickableProps>(
+export default React.forwardRef<HTMLDivElement, ClickableProps>(
 	(props, ref) => <Clickable innerRef={ref} {...props} />,
 );

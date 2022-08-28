@@ -51,7 +51,7 @@ export default function ReportTable(props: ReportTableProps): JSX.Element {
 							<label htmlFor="show-matched-cases">Shows matched cases</label>
 						</div>
 					</td>
-					<td>Baseline</td>
+					<td>Expected</td>
 					<td>Actual</td>
 					<td>Time (s)</td>
 					<td>Matched</td>

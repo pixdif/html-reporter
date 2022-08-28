@@ -10,6 +10,7 @@ window.testReport = {
 		actual: 'output/A5.pdf',
 		status: 5,
 		diffs: [0.0020112767994604477],
+		executionTime: 45482,
 	}, {
 		id: 2,
 		path: 'category/Letter.pdf',

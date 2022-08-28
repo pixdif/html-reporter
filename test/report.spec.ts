@@ -55,6 +55,7 @@ test('View a report', async ({ context, page }) => {
 		expect(await a5.getExpectedPath()).toBe('baseline/A5.pdf');
 		expect(await a5.getActualPath()).toBe('output/A5.pdf');
 		expect(await a5.getStatus()).toBe('No');
+		expect(await a5.getExecutionTime()).toBe('45.482');
 	});
 
 	await test.step('Check Two to One', async () => {

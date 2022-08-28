@@ -36,7 +36,7 @@ test('View a report', async ({ context, page }) => {
 	await test.step('Open a report', async () => {
 		await page.goto(`file://${path.resolve('output/index.html')}`);
 		await page.screenshot({
-			path: 'output/report.png',
+			path: 'output/report-default.png',
 		});
 
 		const rows = table.getRows();
@@ -48,6 +48,7 @@ test('View a report', async ({ context, page }) => {
 		expect(await a5.getPath()).toBe('A5.pdf');
 		expect(await a5.getExpectedPath()).toBe('baseline/A5.pdf');
 		expect(await a5.getActualPath()).toBe('output/A5.pdf');
+		expect(await a5.getStatus()).toBe('No');
 	});
 
 	await test.step('Check Two to One', async () => {
@@ -55,6 +56,27 @@ test('View a report', async ({ context, page }) => {
 		expect(await letter.getPath()).toBe('category/Two to One.pdf');
 		expect(await letter.getExpectedPath()).toBe('baseline/category/Two to One.pdf');
 		expect(await letter.getActualPath()).toBe('output/category/Two to One.pdf');
+		expect(await letter.getStatus()).toBe('No');
+	});
+
+	await test.step('Toggle matched cases', async () => {
+		const checkbox = table.getShowMatchedCases();
+		await checkbox.click();
+
+		await page.screenshot({
+			path: 'output/report-all-cases.png',
+		});
+
+		const rows = table.getRows();
+		expect(await rows.count()).toBe(6);
+	});
+
+	await test.step('Check Letter', async () => {
+		const letter = table.getRow(1);
+		expect(await letter.getPath()).toBe('category/Letter.pdf');
+		expect(await letter.getExpectedPath()).toBe('baseline/category/Letter.pdf');
+		expect(await letter.getActualPath()).toBe('output/category/Letter.pdf');
+		expect(await letter.getStatus()).toBe('Yes');
 	});
 
 	await test.step('Open a specific test case', async () => {

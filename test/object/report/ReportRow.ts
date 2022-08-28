@@ -30,7 +30,7 @@ export default class ReportRow extends BasicLocator {
 	}
 
 	getStatus() {
-		return this.getCell(4);
+		return this.getCell(4).textContent();
 	}
 
 	getViewAll() {

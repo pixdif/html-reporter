@@ -1,17 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { TestReport } from '@pixdif/model';
-
 import DiffViewer from './gui/DiffViewer';
+import loadReport from './loadReport';
 
 import './global.scss';
-
-declare global {
-	interface Window {
-		testReport?: TestReport;
-	}
-}
 
 (async function main(): Promise<void> {
 	const params = new URLSearchParams(window.location.search);
@@ -21,10 +14,11 @@ declare global {
 			<div>Please open test-viewer.html</div>,
 			document.getElementById('root'),
 		);
-	} else if (window.testReport) {
-		const report = window.testReport;
-		delete window.testReport;
+		return;
+	}
 
+	const report = loadReport();
+	if (report) {
 		const caseId = Number.parseInt(caseStr, 10);
 		ReactDOM.render(
 			<DiffViewer

@@ -5,8 +5,11 @@
   "main": "dist",
   "scripts": {
     "start": "webpack serve --mode=development",
-    "build": "webpack",
-    "debug": "webpack --mode=development",
+    "build": "npm run build-gui && npm run build-cli",
+    "build-gui": "webpack",
+    "debug-gui": "webpack --mode=development",
+    "build-cli": "tsc -p tsconfig.cli.json",
+    "debug-cli": "tsc -p tsconfig.cli.json --incremental --sourceMap",
     "test": "npm run lint && playwright test",
     "lint": "eslint --ext=ts,tsx,js ."
   },

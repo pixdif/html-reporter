@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"outDir": "dist",
+		"module": "Node16",
+		"moduleResolution": "Node",
+		"declaration": true,
+		"strict": true
+	},
+	"include": [
+		"src/index.ts"
+	]
+}

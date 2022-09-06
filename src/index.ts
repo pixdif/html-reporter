@@ -4,9 +4,13 @@ import path from 'path';
 import {
 	TestStatus,
 	TestReport,
+	TestReportWriter,
 } from '@pixdif/model';
 
-async function writeReport(reportData: TestReport, outputDir: string): Promise<void> {
+const writeReport: TestReportWriter = async (
+	reportData: TestReport,
+	outputDir: string,
+): Promise<void> => {
 	const distDir = __dirname;
 	if (!fs.existsSync(outputDir)) {
 		await fsp.mkdir(outputDir, { recursive: true });
@@ -36,6 +40,6 @@ async function writeReport(reportData: TestReport, outputDir: string): Promise<v
 	if (failedCases.length > 0) {
 		await fsp.writeFile(path.join(outputDir, 'failed-cases.json'), JSON.stringify(failedCases));
 	}
-}
+};
 
 export default writeReport;

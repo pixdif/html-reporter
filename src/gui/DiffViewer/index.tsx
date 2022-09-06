@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-	MessageLevel,
+	ResponseStatus,
 	TestReport,
 	TestStatus,
 } from '@pixdif/model';
@@ -13,11 +13,6 @@ import { makeToast } from '../../base/Toast';
 import DiffLayout from '../DiffLayout';
 
 import './styles.scss';
-
-interface Message {
-	message: string;
-	level: MessageLevel;
-}
 
 interface DiffViewerProps {
 	report: TestReport;
@@ -56,8 +51,15 @@ export default function DiffViewer(props: DiffViewerProps): JSX.Element {
 		try {
 			await client.connect();
 			const currentDir = getCurrentDir();
-			const res = await client.updateSnapshot(`${currentDir}/${data.expected}`, `${currentDir}/${data.actual}`) as Message;
-			makeToast(res.message, res.level);
+			const res = await client.updateSnapshot(`${currentDir}/${data.expected}`, `${currentDir}/${data.actual}`);
+			switch (res.status) {
+			case ResponseStatus.Ok:
+				makeToast('The snapshot has been successfully updated.');
+				break;
+			default:
+				makeToast('Failed to write to the snapshot file.');
+				break;
+			}
 		} catch (error) {
 			makeToast('Failed to connect to the server. Please run `node server`', 'error');
 		} finally {
@@ -65,12 +67,12 @@ export default function DiffViewer(props: DiffViewerProps): JSX.Element {
 		}
 	};
 
-	const threshold = config.diffThreshold || 0;
+	const tolerance = config.tolerance ?? 0;
 	const data = report.testCases[caseId];
 	const diffs = (data.diffs || []).map((ratio, i) => ({ index: i + 1, ratio }));
 
 	const imageDir = `image/${data.path.replace(/\.[^/\\.]+$/, '')}`;
-	const thresholdText = (threshold * 100).toFixed(3);
+	const toleranceText = (tolerance * 100).toFixed(3);
 
 	return (
 		<div className="diff-viewer">
@@ -84,7 +86,7 @@ export default function DiffViewer(props: DiffViewerProps): JSX.Element {
 				/>
 				<label htmlFor="hide-matched">
 					Hide matched pages
-					<span className="threshold">{thresholdText}</span>
+					<span className="threshold">{toleranceText}</span>
 				</label>
 			</div>
 			<h3 className="diff-layout">
@@ -94,13 +96,13 @@ export default function DiffViewer(props: DiffViewerProps): JSX.Element {
 			</h3>
 			<ul className="page-list">
 				{diffs.map(({ index, ratio }) => {
-					if (ratio <= threshold && matchedHidden) {
+					if (ratio <= tolerance && matchedHidden) {
 						return null;
 					}
 
 					let className: string | undefined;
 					if (!matchedHidden) {
-						className = ratio <= threshold ? 'matched' : 'unmatched';
+						className = ratio <= tolerance ? 'matched' : 'unmatched';
 					}
 					const key = `${matchedHidden ? 'sliced-' : 'origin-'}${index}`;
 					const anchorName = `page${index}`;

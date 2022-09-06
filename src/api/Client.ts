@@ -1,7 +1,12 @@
-import { Command } from '@pixdif/model';
+import {
+	Request,
+	RequestContext,
+	RequestMethod,
+	Response,
+} from '@pixdif/model';
 
 interface Callback {
-	resolve: (data: unknown) => void;
+	resolve: (data: Response<unknown>) => void;
 	reject: () => void;
 }
 
@@ -33,19 +38,16 @@ class Client {
 				return Promise.resolve();
 			}
 			this.socket.close();
+			delete this.socket;
 		}
 
-		this.socket = new WebSocket(`ws://${this.wsEndpoint}`);
+		const socket = new WebSocket(`ws://${this.wsEndpoint}`);
+		this.socket = socket;
 		return new Promise((resolve, reject) => {
-			if (!this.socket) {
-				reject(new Error('Socket is disconnected.'));
-				return;
-			}
+			socket.onopen = (): void => resolve();
+			socket.onclose = reject;
 
-			this.socket.onopen = (): void => resolve();
-			this.socket.onclose = reject;
-
-			this.socket.onmessage = (event): void => {
+			socket.onmessage = (event): void => {
 				let res = null;
 				try {
 					res = JSON.parse(event.data);
@@ -53,7 +55,7 @@ class Client {
 					return;
 				}
 
-				const req = this.reqMap.get(res.msgId);
+				const req = this.reqMap.get(res.id);
 				if (req) {
 					req.resolve(res.data);
 				}
@@ -72,32 +74,45 @@ class Client {
 	}
 
 	/**
-	 * Send a command to the server
-	 * @param cmd
-	 * @param arg
-	 * @return response
-	 */
-	send(cmd: string, arg: unknown): Promise<unknown> {
-		if (!this.socket) {
-			return Promise.reject(new Error('Web socket is not disconnected.'));
-		}
-
-		const msgId = this.msgId++;
-		const message = JSON.stringify({ msgId, cmd, arg });
-		this.socket.send(message);
-
-		return new Promise((resolve, reject) => {
-			this.reqMap.set(msgId, { resolve, reject });
-		});
-	}
-
-	/**
 	 * Update a PDF baseline
 	 * @param expected
 	 * @param actual
 	 */
-	updateSnapshot(expected: string, actual: string): Promise<unknown> {
-		return this.send(Command.UpdateSnapshot, { expected, actual });
+	async updateSnapshot(expected: string, actual: string): Promise<Response<void>> {
+		const res = await this.send(RequestMethod.Put, RequestContext.Snapshot, { expected, actual });
+		return res as Response<void>;
+	}
+
+	/**
+	 * Send a command to the server
+	 * @param method request method
+	 * @param context request context
+ 	 * @param payload request payload
+	 * @return response
+	 */
+	protected send(
+		method: RequestMethod,
+		context: RequestContext,
+		payload?: unknown,
+	): Promise<Response<unknown>> {
+		if (!this.socket) {
+			return Promise.reject(new Error('Web socket is not disconnected.'));
+		}
+
+		const id = this.msgId++;
+		const message: Request<unknown> = {
+			method,
+			context,
+			payload,
+		};
+		this.socket.send(JSON.stringify({
+			id,
+			...message,
+		}));
+
+		return new Promise((resolve, reject) => {
+			this.reqMap.set(id, { resolve, reject });
+		});
 	}
 }
 

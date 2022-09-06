@@ -1,6 +1,6 @@
 const testReport = {
 	config: {
-		diffThreshold: 0.001,
+		tolerance: 0.001,
 		wsEndpoint: 'localhost:20190',
 	},
 	testCases: [{

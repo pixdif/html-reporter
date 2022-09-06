@@ -40,9 +40,9 @@ function ProfileArea(props: ProfileAreaProps): JSX.Element {
 						<span className="limit">{testCases.length}</span>
 					</span>
 				</dd>
-				<dt>Difference Threshold</dt>
+				<dt>Difference Tolerance</dt>
 				<dd>
-					<span className="percent">{(config.diffThreshold * 100).toFixed(1)}</span>
+					<span className="percent">{(config.tolerance * 100).toFixed(1)}</span>
 				</dd>
 			</dl>
 		</div>

@@ -76,7 +76,7 @@ export default function ReportTable(props: ReportTableProps): JSX.Element {
 					<ReportRow
 						key={`row-${testCase.path}`}
 						id={id}
-						diffThreshold={config.diffThreshold}
+						tolerance={config.tolerance}
 						showsMatchedCases={showsMatchedCases}
 						showsMatchedPages={showsMatchedPages}
 						testCase={testCase}

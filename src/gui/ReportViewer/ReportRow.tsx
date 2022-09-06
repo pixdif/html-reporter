@@ -9,12 +9,15 @@ import {
 import DiffList from './DiffList';
 
 interface StatusIconProps {
-	status: TestStatus;
+	status?: TestStatus;
 	progress?: Progress;
 }
 
 function StatusIcon(props: StatusIconProps): JSX.Element | null {
-	const { status, progress } = props;
+	const {
+		status = TestStatus.Unexecuted,
+		progress,
+	} = props;
 
 	if (status === TestStatus.InProgress) {
 		if (!progress) {
@@ -43,7 +46,7 @@ function StatusIcon(props: StatusIconProps): JSX.Element | null {
 interface ReportRowProps {
 	testCase: TestCase;
 	id: number;
-	diffThreshold: number;
+	tolerance: number;
 	showsMatchedCases: boolean;
 	showsMatchedPages: boolean;
 }
@@ -52,7 +55,7 @@ export default function ReportRow(props: ReportRowProps): JSX.Element | null {
 	const {
 		id,
 		testCase,
-		diffThreshold,
+		tolerance,
 		showsMatchedCases,
 		showsMatchedPages,
 	} = props;
@@ -98,7 +101,7 @@ export default function ReportRow(props: ReportRowProps): JSX.Element | null {
 						diffs={diffs}
 						caseId={id}
 						showsMatchedPages={showsMatchedPages}
-						diffThreshold={diffThreshold}
+						diffThreshold={tolerance}
 					/>
 				)}
 			</td>

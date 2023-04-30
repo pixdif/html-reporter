@@ -9,7 +9,7 @@ import {
 
 import Client from '../../api/Client';
 import { Clickable } from '../../base/Clickable';
-import { makeToast } from '../../base/Toast';
+import { makeToast } from '../../common/Toast';
 
 import DiffLayout from '../DiffLayout';
 

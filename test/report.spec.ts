@@ -1,10 +1,10 @@
 import fs from 'fs';
 import fsp from 'fs/promises';
 import path from 'path';
+import { rimraf } from 'rimraf';
 import { expect, test } from '@playwright/test';
 
 import cp from './util/cp';
-import rimraf from './util/rimraf';
 
 import ReportViewer from './object/ReportViewer';
 

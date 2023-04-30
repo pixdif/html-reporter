@@ -32,9 +32,11 @@ export default function Collapse({
 				/>
 				{header}
 			</div>
-			<div className="content">
-				{children}
-			</div>
+			{children && (
+				<div className="content">
+					{children}
+				</div>
+			)}
 		</div>
 	);
 }

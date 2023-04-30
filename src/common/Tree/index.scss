@@ -1,0 +1,11 @@
+.tree {
+	text-align: left;
+
+	.checkbox {
+		margin: 5px 0;
+	}
+
+	> .tree-option:not(.collapse) {
+		margin-left: 16px;
+	}
+}

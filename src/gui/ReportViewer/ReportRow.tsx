@@ -45,7 +45,7 @@ function StatusIcon(props: StatusIconProps): JSX.Element | null {
 
 interface ReportRowProps {
 	testCase: TestCase;
-	id: number;
+	id: string;
 	tolerance: number;
 	showsMatchedCases: boolean;
 	showsMatchedPages: boolean;
@@ -65,7 +65,7 @@ export default function ReportRow(props: ReportRowProps): JSX.Element | null {
 		expected,
 		actual,
 		executionTime,
-		diffs = [],
+		details = [],
 		status,
 		comment,
 	} = testCase;
@@ -96,10 +96,10 @@ export default function ReportRow(props: ReportRowProps): JSX.Element | null {
 				)}
 			</td>
 			<td className="difference">
-				{diffs && (
+				{details && (
 					<DiffList
-						diffs={diffs}
-						caseId={id}
+						id={id}
+						details={details}
 						showsMatchedPages={showsMatchedPages}
 						diffThreshold={tolerance}
 					/>

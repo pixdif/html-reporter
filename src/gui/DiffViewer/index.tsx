@@ -1,8 +1,9 @@
 import React from 'react';
 
 import {
+	Config,
 	ResponseStatus,
-	TestReport,
+	TestCase,
 	TestStatus,
 } from '@pixdif/model';
 
@@ -15,8 +16,8 @@ import DiffLayout from '../DiffLayout';
 import './styles.scss';
 
 interface DiffViewerProps {
-	report: TestReport;
-	caseId: number;
+	config: Config;
+	testCase: TestCase;
 }
 
 function getCurrentDir(): string {
@@ -32,13 +33,10 @@ function getCurrentDir(): string {
 	return myDir;
 }
 
-export default function DiffViewer(props: DiffViewerProps): JSX.Element {
-	const {
-		report,
-		caseId,
-	} = props;
-	const { config } = report;
-
+export default function DiffViewer({
+	config,
+	testCase,
+}: DiffViewerProps): JSX.Element {
 	const [matchedHidden, setMatchedHidden] = React.useState(true);
 
 	const toggleMatched = (): void => {
@@ -46,12 +44,11 @@ export default function DiffViewer(props: DiffViewerProps): JSX.Element {
 	};
 
 	const updateBaseline = async (): Promise<void> => {
-		const data = report.testCases[caseId];
 		const client = new Client(config.wsEndpoint);
 		try {
 			await client.connect();
 			const currentDir = getCurrentDir();
-			const res = await client.updateSnapshot(`${currentDir}/${data.expected}`, `${currentDir}/${data.actual}`);
+			const res = await client.updateSnapshot(`${currentDir}/${testCase.expected}`, `${currentDir}/${testCase.actual}`);
 			switch (res.status) {
 			case ResponseStatus.Ok:
 				makeToast('The snapshot has been successfully updated.');
@@ -68,15 +65,12 @@ export default function DiffViewer(props: DiffViewerProps): JSX.Element {
 	};
 
 	const tolerance = config.tolerance ?? 0;
-	const data = report.testCases[caseId];
-	const diffs = (data.diffs || []).map((ratio, i) => ({ index: i + 1, ratio }));
-
-	const imageDir = `image/${data.path.replace(/\.[^/\\.]+$/, '')}`;
 	const toleranceText = (tolerance * 100).toFixed(3);
+	const { status } = testCase;
 
 	return (
 		<div className="diff-viewer">
-			<h2>{data.actual}</h2>
+			<h2>{testCase.actual}</h2>
 			<div className="control-panel">
 				<input
 					type="checkbox"
@@ -90,45 +84,45 @@ export default function DiffViewer(props: DiffViewerProps): JSX.Element {
 				</label>
 			</div>
 			<h3 className="diff-layout">
-				<p><a href={data.expected} target="_blank" rel="noreferrer">Baseline</a></p>
+				<p><a href={testCase.expected} target="_blank" rel="noreferrer">Expected</a></p>
 				<p>Difference</p>
-				<p><a href={data.actual} target="_blank" rel="noreferrer">Output</a></p>
+				<p><a href={testCase.actual} target="_blank" rel="noreferrer">Actual</a></p>
 			</h3>
 			<ul className="page-list">
-				{diffs.map(({ index, ratio }) => {
-					if (ratio <= tolerance && matchedHidden) {
+				{testCase.details?.map((tp, index) => {
+					if (tp.ratio <= tolerance && matchedHidden) {
 						return null;
 					}
 
 					let className: string | undefined;
 					if (!matchedHidden) {
-						className = ratio <= tolerance ? 'matched' : 'unmatched';
+						className = tp.ratio <= tolerance ? 'matched' : 'unmatched';
 					}
 					const key = `${matchedHidden ? 'sliced-' : 'origin-'}${index}`;
 					const anchorName = `page${index}`;
-					const title = `Page ${index}`;
-					const ratioText = (ratio * 100).toFixed(3);
+					const ratioText = (tp.ratio * 100).toFixed(3);
 					return (
 						<li key={key} className={className}>
 							<h4>
-								<span id={anchorName}>{title}</span>
+								<span id={anchorName}>{tp.name}</span>
 								<em className="ratio">{ratioText}</em>
 							</h4>
 							<DiffLayout
-								path={imageDir}
-								pageIndex={index}
+								expected={tp.expected}
+								actual={tp.actual}
+								diff={tp.diff}
 							/>
 						</li>
 					);
 				})}
 			</ul>
-			{(data.status === TestStatus.ExpectedNotFound || data.status === TestStatus.Mismatched) && (
+			{(status === TestStatus.ExpectedNotFound || status === TestStatus.Mismatched) && (
 				<div className="button-area">
 					<Clickable<HTMLButtonElement>
 						component="button"
 						onTrigger={updateBaseline}
 					>
-						{data.status === TestStatus.ExpectedNotFound ? 'Add Baseline' : 'Update Baseline'}
+						{testCase.status === TestStatus.ExpectedNotFound ? 'Add Baseline' : 'Update Baseline'}
 					</Clickable>
 				</div>
 			)}

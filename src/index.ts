@@ -34,7 +34,7 @@ const writeReport: TestReportWriter = async (
 		);
 	}
 
-	const failedCases = reportData.testCases
+	const failedCases = Object.values(reportData.cases)
 		.filter((res) => res.status === TestStatus.Mismatched)
 		.map((res) => res.path);
 	if (failedCases.length > 0) {

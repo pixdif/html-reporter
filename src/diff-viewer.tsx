@@ -8,8 +8,8 @@ import './global.scss';
 
 (async function main(): Promise<void> {
 	const params = new URLSearchParams(window.location.search);
-	const caseStr = params.get('case');
-	if (!caseStr) {
+	const caseId = params.get('case');
+	if (!caseId) {
 		ReactDOM.render(
 			<div>Please open test-viewer.html</div>,
 			document.getElementById('root'),
@@ -18,14 +18,20 @@ import './global.scss';
 	}
 
 	const report = loadReport();
-	if (report) {
-		const caseId = Number.parseInt(caseStr, 10);
-		ReactDOM.render(
-			<DiffViewer
-				report={report}
-				caseId={caseId}
-			/>,
-			document.getElementById('root'),
-		);
+	if (!report) {
+		return;
 	}
+
+	const testCase = report.cases[caseId];
+	if (!testCase) {
+		return;
+	}
+
+	ReactDOM.render(
+		<DiffViewer
+			config={report.config}
+			testCase={testCase}
+		/>,
+		document.getElementById('root'),
+	);
 }());

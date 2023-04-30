@@ -22,7 +22,7 @@ interface ProfileAreaProps {
 function ProfileArea(props: ProfileAreaProps): JSX.Element {
 	const { report } = props;
 	const { config } = report;
-	const { testCases } = report;
+	const testCases = Object.values(report.cases);
 	const failureNum = countItem(testCases, (testCase) => testCase.status === TestStatus.Mismatched);
 	const passRatio = (failureNum / testCases.length) * 100;
 	const passRatioText = passRatio ? passRatio.toFixed(2) : 0;

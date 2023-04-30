@@ -1,3 +1,4 @@
+import { TestPoint } from '@pixdif/model';
 import React from 'react';
 
 function diffLevel(ratio: number): number {
@@ -12,18 +13,18 @@ function diffLevel(ratio: number): number {
 }
 
 interface DiffListProps {
-	diffs: number[];
+	id: string;
+	details: TestPoint[];
 	showsMatchedPages: boolean;
 	diffThreshold: number;
-	caseId: number;
 }
 
 export default function DiffList(props: DiffListProps): JSX.Element | null {
 	const collapsedLimit = 10;
 
 	const {
-		caseId,
-		diffs,
+		id,
+		details,
 		showsMatchedPages,
 		diffThreshold,
 	} = props;
@@ -34,11 +35,11 @@ export default function DiffList(props: DiffListProps): JSX.Element | null {
 		setExpanded((prev) => !prev);
 	}
 
-	if (!diffs) {
+	if (!details) {
 		return null;
 	}
 
-	let pages = diffs.map((ratio, index) => ({ index, ratio }));
+	let pages = details.map((point, index) => ({ index, ...point }));
 	let pageNum = pages.length;
 	if (!showsMatchedPages) {
 		pages = pages.filter(({ ratio }) => ratio >= diffThreshold);
@@ -49,10 +50,10 @@ export default function DiffList(props: DiffListProps): JSX.Element | null {
 		pages = pages.slice(0, collapsedLimit);
 	}
 
-	const viewerUrl = `diff-viewer.html?case=${caseId}`;
+	const viewerUrl = `diff-viewer.html?case=${id}`;
 	return (
 		<div>
-			{pages.map(({ index, ratio }) => {
+			{pages.map(({ index, name, ratio }) => {
 				const text = `${(ratio * 100).toFixed(3)}%`;
 				const className = ratio >= diffThreshold ? `mismatched lv${diffLevel(ratio)}` : 'matched';
 
@@ -63,7 +64,7 @@ export default function DiffList(props: DiffListProps): JSX.Element | null {
 						target="_blank"
 						rel="noreferrer"
 						href={`${viewerUrl}#page${index + 1}`}
-						title={`Page ${index + 1}`}
+						title={name}
 					>
 						{text}
 					</a>

@@ -17,9 +17,9 @@ export default function ReportTable(props: ReportTableProps): JSX.Element {
 	const { report } = props;
 	const {
 		config,
-		testCases,
 	} = report;
 
+	const testCases = Object.values(report.cases);
 	const allMatched = testCases.length > 0 && testCases.every(
 		(tc) => tc.status === TestStatus.Matched,
 	);
@@ -72,7 +72,7 @@ export default function ReportTable(props: ReportTableProps): JSX.Element {
 				</tr>
 			</thead>
 			<tbody>
-				{testCases.map((testCase, id) => (
+				{Object.entries(report.cases).map(([id, testCase]) => (
 					<ReportRow
 						key={`row-${testCase.path}`}
 						id={id}

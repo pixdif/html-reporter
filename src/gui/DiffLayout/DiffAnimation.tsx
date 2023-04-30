@@ -7,7 +7,7 @@ import './DiffAnimation.scss';
 
 interface DiffAnimationProps {
 	base: string;
-	diff: string;
+	diff?: string;
 	target: string;
 }
 
@@ -48,11 +48,13 @@ export default function DiffAnimation(props: DiffAnimationProps): JSX.Element {
 				</div>
 			) : (
 				<div className="overlay gray">
-					<Image
-						className="diff"
-						src={diff}
-						alt="Difference"
-					/>
+					{diff && (
+						<Image
+							className="diff"
+							src={diff}
+							alt="Difference"
+						/>
+					)}
 				</div>
 			)}
 		</FullscreenViewer>

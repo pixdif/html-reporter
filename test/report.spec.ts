@@ -95,5 +95,8 @@ test('View a report', async ({ context, page }) => {
 		await newPage.screenshot({
 			path: 'output/report-A5.png',
 		});
+
+		const h4 = newPage.locator('h4');
+		expect(await h4.textContent()).toContain('Cover');
 	});
 });

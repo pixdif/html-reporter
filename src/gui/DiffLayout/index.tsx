@@ -6,20 +6,16 @@ import DiffAnimation from './DiffAnimation';
 import './index.scss';
 
 interface DiffLayoutProps {
-	path: string;
-	pageIndex: number;
+	expected: string;
+	actual: string;
+	diff?: string;
 }
 
-export default function DiffLayout(props: DiffLayoutProps): JSX.Element {
-	const {
-		path,
-		pageIndex,
-	} = props;
-
-	const expected = `${path}/expected/${pageIndex}.png`;
-	const diff = `${path}/${pageIndex}.png`;
-	const actual = `${path}/actual/${pageIndex}.png`;
-
+export default function DiffLayout({
+	expected,
+	actual,
+	diff,
+}: DiffLayoutProps): JSX.Element {
 	return (
 		<div className="diff-layout">
 			<ImageViewer

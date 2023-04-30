@@ -1,7 +1,9 @@
+@import '../../theme/ui/color.scss';
 
 table.test-report {
 	width: 100%;
 	border-collapse: collapse;
+	background: $secondary-background;
 
 	.mismatched {
 		color: #d53f3a;
@@ -80,7 +82,6 @@ table.test-report {
 	}
 
 	thead {
-		color: rgb(192, 192, 192);
 		font-size: 11pt;
 
 		td {

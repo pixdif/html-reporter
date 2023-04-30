@@ -5,7 +5,7 @@ import ReportViewer from './gui/ReportViewer';
 import DiffViewer from './gui/DiffViewer';
 import loadReport from './loadReport';
 
-import './global.scss';
+import './theme/global.scss';
 
 (async function main() {
 	const root = document.getElementById('root');

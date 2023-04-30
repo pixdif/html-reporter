@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import ReportViewer from './gui/ReportViewer';
 import DiffViewer from './gui/DiffViewer';
@@ -8,13 +8,18 @@ import loadReport from './loadReport';
 import './global.scss';
 
 (async function main() {
+	const root = document.getElementById('root');
+	if (!root) {
+		return;
+	}
+
+	const app = createRoot(root);
 	const report = loadReport();
 	if (!report) {
-		ReactDOM.render(
+		app.render(
 			<div className="tips">
 				<p>Failed to load test report.</p>
 			</div>,
-			document.getElementById('root'),
 		);
 		return;
 	}
@@ -22,11 +27,10 @@ import './global.scss';
 	const params = new URLSearchParams(window.location.search);
 	const caseId = params.get('case');
 	if (!caseId) {
-		ReactDOM.render(
+		app.render(
 			<ReportViewer
 				report={report}
 			/>,
-			document.getElementById('root'),
 		);
 		return;
 	}
@@ -36,11 +40,10 @@ import './global.scss';
 		return;
 	}
 
-	ReactDOM.render(
+	app.render(
 		<DiffViewer
 			config={report.config}
 			testCase={testCase}
 		/>,
-		document.getElementById('root'),
 	);
 }());

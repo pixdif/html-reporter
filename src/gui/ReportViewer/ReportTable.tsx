@@ -48,13 +48,13 @@ export default function ReportTable(props: ReportTableProps): JSX.Element {
 								checked={showsMatchedCases}
 								onChange={toggleMatchedCases}
 							/>
-							<label htmlFor="show-matched-cases">Shows matched cases</label>
+							<label htmlFor="show-matched-cases">Shows passed</label>
 						</div>
 					</td>
 					<td>Expected</td>
 					<td>Actual</td>
 					<td>Time (s)</td>
-					<td>Matched</td>
+					<td>Result</td>
 					<td>Images</td>
 					<td>
 						Difference
@@ -66,7 +66,7 @@ export default function ReportTable(props: ReportTableProps): JSX.Element {
 								checked={showsMatchedPages}
 								onChange={toggleMatchedPages}
 							/>
-							<label htmlFor="show-matched-pages">Shows matched pages</label>
+							<label htmlFor="show-matched-pages">Shows passed</label>
 						</div>
 					</td>
 				</tr>

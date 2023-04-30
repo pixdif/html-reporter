@@ -33,11 +33,11 @@ function StatusIcon(props: StatusIconProps): JSX.Element | null {
 	}
 
 	if (status === TestStatus.Matched) {
-		return <span className="status matched">Yes</span>;
+		return <span className="status matched">Passed</span>;
 	}
 
 	if (status === TestStatus.Mismatched) {
-		return <span className="status mismatched">No</span>;
+		return <span className="status mismatched">Failed</span>;
 	}
 
 	return null;

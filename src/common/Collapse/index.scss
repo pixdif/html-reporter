@@ -1,0 +1,27 @@
+.collapse {
+	.header {
+		display: flex;
+		flex-direction: row;
+
+		.arrow {
+			transform: rotate(90deg);
+			transform-origin: center center;
+		}
+	}
+
+	.content {
+		padding-left: 1em;
+	}
+
+	&.collapsed {
+		.header {
+			.arrow {
+				transform: none;
+			}
+		}
+
+		.content {
+			display: none;
+		}
+	}
+}

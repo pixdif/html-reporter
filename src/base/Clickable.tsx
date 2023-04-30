@@ -1,4 +1,5 @@
 import React from 'react';
+import { isModifierKeyPressed, isTriggered } from '../util/keyboard';
 
 interface ClickableProps<T extends HTMLElement = HTMLDivElement> extends React.HTMLAttributes<T> {
 	component?: React.ElementType;
@@ -23,7 +24,9 @@ export function Clickable<T extends HTMLElement = HTMLDivElement>({
 	}, [onClick]);
 
 	const handleKeyDown = React.useCallback((e: React.KeyboardEvent<T>) => {
-		onTrigger(e);
+		if (!isModifierKeyPressed(e) && isTriggered(e)) {
+			onTrigger(e);
+		}
 		onKeyDown?.(e);
 	}, [onKeyDown]);
 

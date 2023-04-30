@@ -4,11 +4,12 @@ a {
 	color: $important-text;
 
 	&:hover {
-		color: rgb(134, 163, 206);
+		color: rgb(255, 228, 145);
+		text-shadow: rgb(255, 228, 145) 0 0 2px;
 	}
 
 	&:visited {
-		color: rgb(165, 11, 165);
+		color: rgb(255, 137, 255);
 	}
 }
 

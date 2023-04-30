@@ -18,15 +18,6 @@ body {
 	display: none;
 }
 
-button {
-	color: #fff;
-	background: #0088cc;
-	border: #0088cc 1px solid;
-	padding: 0.6em 1em;
-	border-radius: 3px;
-	cursor: pointer;
-}
-
 #cover {
 	position: absolute;
 	top: 0;
@@ -60,5 +51,6 @@ input[type="number"] {
 }
 
 @import './ui/arrow.scss';
+@import './ui/button.scss';
 @import './ui/heading.scss';
 @import './ui/link.scss';

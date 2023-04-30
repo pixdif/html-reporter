@@ -1,4 +1,8 @@
-import { TestReport, TestStatus } from '@pixdif/model';
+import { TestReport } from '@pixdif/model';
+
+/**
+ * @typedef {import('@pixdif/model').TestStatus} TestStatus
+ */
 
 const testReport: TestReport = {
 	config: {
@@ -11,7 +15,10 @@ const testReport: TestReport = {
 			path: 'A5.pdf',
 			expected: 'baseline/A5.pdf',
 			actual: 'output/A5.pdf',
-			status: TestStatus.Mismatched,
+			/**
+			* @type {TestStatus.Mismatched}
+			*/
+			status: 5,
 			details: [
 				{
 					name: 'Cover',
@@ -28,6 +35,9 @@ const testReport: TestReport = {
 			path: 'category/Letter.pdf',
 			expected: 'baseline/category/Letter.pdf',
 			actual: 'output/category/Letter.pdf',
+			/**
+			 * @type {TestStatus.Matched}
+			 */
 			status: 4,
 			details: [
 				{
@@ -43,7 +53,10 @@ const testReport: TestReport = {
 			path: 'category/Two to One.pdf',
 			expected: 'baseline/category/Two to One.pdf',
 			actual: 'output/category/Two to One.pdf',
-			status: TestStatus.Mismatched,
+			/**
+			* @type {TestStatus.Mismatched}
+			*/
+			status: 5,
 			details: [
 				{
 					name: 'Page 1',
@@ -66,14 +79,20 @@ const testReport: TestReport = {
 			path: 'no baseline.pdf',
 			expected: 'baseline/no baseline.pdf',
 			actual: 'output/no baseline.pdf',
-			status: TestStatus.ExpectedNotFound,
+			/**
+			 * @type {TestStatus.ExpectedNotFound}
+			 */
+			status: 1,
 		},
 		one2two: {
 			name: 'One to Two',
 			path: 'One to Two.pdf',
 			expected: 'baseline/One to Two.pdf',
 			actual: 'output/One to Two.pdf',
-			status: TestStatus.Mismatched,
+			/**
+			 * @type {TestStatus.Mismatched}
+			 */
+			status: 5,
 			details: [
 				{
 					name: 'Page A',
@@ -96,7 +115,10 @@ const testReport: TestReport = {
 			path: 'no output.pdf',
 			expected: 'baseline/no output.pdf',
 			actual: 'output/no output.pdf',
-			status: TestStatus.ActualNotFound,
+			/**
+			 * @type {TestStatus.ActualNotFound}
+			 */
+			status: 2,
 		},
 	},
 };

@@ -19,7 +19,6 @@ const writeReport: TestReportWriter = async (
 	await fsp.writeFile(path.join(outputDir, 'test-report.data.js'), `window.testReport = ${JSON.stringify(reportData)};`);
 
 	await fsp.copyFile(path.join(distDir, 'index.html'), path.join(outputDir, 'index.html'));
-	await fsp.copyFile(path.join(distDir, 'diff-viewer.html'), path.join(outputDir, 'diff-viewer.html'));
 
 	const outputStaticDir = path.join(outputDir, 'static');
 	if (!fs.existsSync(outputStaticDir)) {

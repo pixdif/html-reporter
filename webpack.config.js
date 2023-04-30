@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /**
  * @param {Record<string, string>} env environment variables
@@ -21,12 +22,11 @@ module.exports = function config(env, argv) {
 			],
 		},
 		entry: {
-			'report-viewer': './src/report-viewer.tsx',
-			'diff-viewer': './src/diff-viewer.tsx',
+			app: './src/app.tsx',
 		},
 		output: {
-			filename: '[name].js',
-			path: path.resolve(__dirname, 'dist/static'),
+			filename: 'static/[name].js',
+			path: path.resolve(__dirname, 'dist'),
 		},
 		optimization: {
 			splitChunks: {
@@ -71,8 +71,12 @@ module.exports = function config(env, argv) {
 		},
 		plugins: [
 			new MiniCssExtractPlugin({
-				filename: '[name].css',
-				chunkFilename: '[name].css',
+				filename: 'static/[name].css',
+			}),
+			new HtmlWebpackPlugin({
+				title: 'Test Report Viewer',
+				output: 'index.html',
+				template: 'src/index.html',
 			}),
 		],
 		devtool: mode === 'production' ? undefined : 'source-map',

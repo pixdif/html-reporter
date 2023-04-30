@@ -74,7 +74,7 @@ export default function ReportRow(props: ReportRowProps): JSX.Element | null {
 		return null;
 	}
 
-	const viewerUrl = `diff-viewer.html?case=${id}`;
+	const viewerUrl = `index.html?case=${id}`;
 	return (
 		<tr>
 			<td className="url" title={comment}>{path}</td>

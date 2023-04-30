@@ -50,7 +50,7 @@ export default function DiffList(props: DiffListProps): JSX.Element | null {
 		pages = pages.slice(0, collapsedLimit);
 	}
 
-	const viewerUrl = `diff-viewer.html?case=${id}`;
+	const viewerUrl = `index.html?case=${id}`;
 	return (
 		<div>
 			{pages.map(({ index, name, ratio }) => {

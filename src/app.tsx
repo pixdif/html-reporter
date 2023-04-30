@@ -1,24 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import ReportViewer from './gui/ReportViewer';
 import DiffViewer from './gui/DiffViewer';
 import loadReport from './loadReport';
 
 import './global.scss';
 
-(async function main(): Promise<void> {
-	const params = new URLSearchParams(window.location.search);
-	const caseId = params.get('case');
-	if (!caseId) {
+(async function main() {
+	const report = loadReport();
+	if (!report) {
 		ReactDOM.render(
-			<div>Please open test-viewer.html</div>,
+			<div className="tips">
+				<p>Failed to load test report.</p>
+			</div>,
 			document.getElementById('root'),
 		);
 		return;
 	}
 
-	const report = loadReport();
-	if (!report) {
+	const params = new URLSearchParams(window.location.search);
+	const caseId = params.get('case');
+	if (!caseId) {
+		ReactDOM.render(
+			<ReportViewer
+				report={report}
+			/>,
+			document.getElementById('root'),
+		);
 		return;
 	}
 

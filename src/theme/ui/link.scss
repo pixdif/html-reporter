@@ -1,0 +1,19 @@
+@import './color.scss';
+
+a {
+	color: $important-text;
+
+	&:hover {
+		color: rgb(134, 163, 206);
+	}
+
+	&:visited {
+		color: rgb(165, 11, 165);
+	}
+}
+
+a[name],
+a[name]:hover,
+a[name]:visited {
+	color: rgb(192, 192, 192);
+}

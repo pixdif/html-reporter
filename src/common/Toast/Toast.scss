@@ -7,8 +7,8 @@
 	margin-left: -150px;
 	opacity: 0.5;
 	transition: top 0.3s, opacity 0.3s;
-	background: rgb(71, 164, 71);
-	color: white;
+	background: var(--toast-background);
+	color: var(--toast-text);
 	font-size: 11pt;
 	line-height: 1.5;
 	padding: 1em 1.5em;
@@ -24,11 +24,14 @@
 	}
 
 	&.info {
-		background: rgb(237, 156, 40);
+		background: var(--toast-info);
 	}
 
-	&.error,
 	&.warning {
-		background: rgb(213, 63, 58);
+		background: var(--toast-warning);
+	}
+
+	&.error {
+		background: var(--toast-error);
 	}
 }

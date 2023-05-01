@@ -64,6 +64,10 @@ export default function DiffViewer({
 		}
 	};
 
+	React.useEffect(() => {
+		document.title = `${testCase.name} - ${document.title}`;
+	}, []);
+
 	const tolerance = config.tolerance ?? 0;
 	const toleranceText = (tolerance * 100).toFixed(3);
 	const { status } = testCase;

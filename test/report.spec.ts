@@ -101,6 +101,8 @@ test('View a report', async ({ context, page }) => {
 			path: 'output/report-A5.png',
 		});
 
+		expect(await newPage.title()).toBe('A5 - Sample Report of PDF Files');
+
 		const h4 = newPage.locator('h4');
 		expect(await h4.textContent()).toContain('Cover');
 	});

@@ -62,7 +62,7 @@
 		&.unmatched {
 			h4,
 			h4 a{
-				color: #d53f3a;
+				color: var(--test-mismatched);
 			}
 		}
 	}

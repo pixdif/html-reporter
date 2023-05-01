@@ -6,71 +6,54 @@ table.test-report {
 	background: var(--secondary-background);
 
 	.mismatched {
-		color: #d53f3a;
+		color: var(--test-mismatched);
 
 		&.lv1 {
-			color: #d53f3a;
+			color: var(--test-mismatched-lv1);
 		}
 
 		&.lv2 {
-			color: #d5513a;
+			color: var(--test-mismatched-lv2);
 		}
 
 		&.lv3 {
-			color: #d5853a;
+			color: var(--test-mismatched-lv3);
 		}
 
 		&.lv4 {
-			color: #d5b93a;
+			color: var(--test-mismatched-lv4);
 		}
 	}
 
 	.matched {
-		color: #47a447;
-	}
-
-	.percent-light {
-		display: inline-block;
-		border-radius: 3px;
-		padding: 2px 7px;
-		color: white;
-		background: rgb(5, 93, 151);
-		transition: background-color 0.8s ease-in-out;
-
-		&.icon1 {
-			background: rgb(42, 141, 207);
-		}
-
-		&::after {
-			content: '%';
-		}
+		color: var(--test-matched);
 	}
 
 	.status {
 		display: inline-block;
-		color: white;
+		color: var(--test-status-text);
 		border-radius: 2px;
 		text-align: center;
 		line-height: 1.5em;
 		font-size: 8pt;
 
 		&.mismatched {
-			background: #d53f3a;
+			background: var(--test-mismatched);
 			width: 4em;
 		}
 
 		&.matched {
-			background: #47a447;
+			background: var(--test-matched);
 			width: 4em;
 		}
 
 		&.converting {
-			background: #312fbd;
+			background: var(--test-converting);
 			padding: 0 0.6em;
 		}
 
 		&.comparing {
-			background: #d1ae39;
+			background: var(--test-comparing);
 			padding: 0 0.6em;
 		}
 
@@ -90,7 +73,7 @@ table.test-report {
 	}
 
 	td {
-		border: rgb(27, 27, 27) 1px solid;
+		border: var(--report-cell-border) 1px solid;
 		border-left: 0 solid;
 		border-right: 0 solid;
 		padding: 0.5em 1em;
@@ -105,7 +88,7 @@ table.test-report {
 			}
 
 			a.expand {
-				color: rgb(192, 192, 192);
+				color: var(--secondary-text);
 			}
 		}
 

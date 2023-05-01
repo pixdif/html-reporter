@@ -4,14 +4,14 @@
 	top: calc(50% + 20px);
 	left: 50%;
 	width: 20%;
-	line-height: 36px;
 	margin-left: -150px;
 	opacity: 0.5;
 	transition: top 0.3s, opacity 0.3s;
 	background: rgb(71, 164, 71);
 	color: white;
 	font-size: 11pt;
-	padding: 0.5em 1.5em;
+	line-height: 1.5;
+	padding: 1em 1.5em;
 
 	&.appear {
 		opacity: 1;

@@ -1,20 +1,20 @@
 @import './color.scss';
 
 a {
-	color: var(--important-text);
+	color: var(--link);
 
 	&:hover {
-		color: rgb(255, 228, 145);
-		text-shadow: rgb(255, 228, 145) 0 0 2px;
+		color: var(--hover-link);
+		text-shadow: var(--hover-link-shadow) 0 0 2px;
 	}
 
 	&:visited {
-		color: rgb(255, 137, 255);
+		color: var(--visited-link);
 	}
 }
 
 a[name],
 a[name]:hover,
 a[name]:visited {
-	color: rgb(192, 192, 192);
+	color: var(--anchor);
 }

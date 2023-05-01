@@ -3,7 +3,7 @@
 table.test-report {
 	width: 100%;
 	border-collapse: collapse;
-	background: $secondary-background;
+	background: var(--secondary-background);
 
 	.mismatched {
 		color: #d53f3a;

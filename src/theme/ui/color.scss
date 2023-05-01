@@ -1,1 +1,9 @@
-@import '../palette/default.scss';
+:root {
+	--primary-background: black;
+	--primary-text: white;
+
+	--secondary-text: #fbfbfb;
+	--secondary-background: #0d0d0d;
+
+	--important-text: #eab52e;
+}

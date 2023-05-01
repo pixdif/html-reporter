@@ -1,7 +1,7 @@
 @import './color.scss';
 
 a {
-	color: $important-text;
+	color: var(--important-text);
 
 	&:hover {
 		color: rgb(255, 228, 145);

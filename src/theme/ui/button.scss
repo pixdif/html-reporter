@@ -2,8 +2,8 @@
 
 button {
 	color: black;
-	background: $important-text;
-	border: $important-text 1px solid;
+	background: var(--important-text);
+	border: var(--important-text) 1px solid;
 	padding: 0.6em 1em;
 	border-radius: 3px;
 	cursor: pointer;

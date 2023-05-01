@@ -3,8 +3,8 @@
 body {
 	font-size: 9pt;
 	font-family: "Segoe WPC", "Segoe UI", sans-serif;
-	background: $primary-background;
-	color: $primary-text;
+	background: var(--primary-background);
+	color: var(--primary-text);
 	margin: 0;
 	padding: 0;
 }

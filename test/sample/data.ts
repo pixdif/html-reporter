@@ -13,8 +13,8 @@ const testReport: TestReport = {
 		a5: {
 			name: 'A5',
 			path: 'A5.pdf',
-			expected: 'baseline/A5.pdf',
-			actual: 'output/A5.pdf',
+			expected: 'expected/A5.pdf',
+			actual: 'actual/A5.pdf',
 			/**
 			* @type {TestStatus.Mismatched}
 			*/
@@ -33,8 +33,8 @@ const testReport: TestReport = {
 		letter: {
 			name: 'Letter',
 			path: 'category/Letter.pdf',
-			expected: 'baseline/category/Letter.pdf',
-			actual: 'output/category/Letter.pdf',
+			expected: 'expected/category/Letter.pdf',
+			actual: 'actual/category/Letter.pdf',
 			/**
 			 * @type {TestStatus.Matched}
 			 */
@@ -51,8 +51,8 @@ const testReport: TestReport = {
 		two2one: {
 			name: 'Two to One',
 			path: 'category/Two to One.pdf',
-			expected: 'baseline/category/Two to One.pdf',
-			actual: 'output/category/Two to One.pdf',
+			expected: 'expected/category/Two to One.pdf',
+			actual: 'actual/category/Two to One.pdf',
 			/**
 			* @type {TestStatus.Mismatched}
 			*/
@@ -77,8 +77,8 @@ const testReport: TestReport = {
 		noExpected: {
 			name: 'no baseline',
 			path: 'no baseline.pdf',
-			expected: 'baseline/no baseline.pdf',
-			actual: 'output/no baseline.pdf',
+			expected: 'expected/no baseline.pdf',
+			actual: 'actual/no baseline.pdf',
 			/**
 			 * @type {TestStatus.ExpectedNotFound}
 			 */
@@ -87,8 +87,8 @@ const testReport: TestReport = {
 		one2two: {
 			name: 'One to Two',
 			path: 'One to Two.pdf',
-			expected: 'baseline/One to Two.pdf',
-			actual: 'output/One to Two.pdf',
+			expected: 'expected/One to Two.pdf',
+			actual: 'actual/One to Two.pdf',
 			/**
 			 * @type {TestStatus.Mismatched}
 			 */
@@ -113,8 +113,8 @@ const testReport: TestReport = {
 		noActual: {
 			name: 'no output',
 			path: 'no output.pdf',
-			expected: 'baseline/no output.pdf',
-			actual: 'output/no output.pdf',
+			expected: 'expected/no output.pdf',
+			actual: 'actual/no output.pdf',
 			/**
 			 * @type {TestStatus.ActualNotFound}
 			 */

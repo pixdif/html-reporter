@@ -39,8 +39,8 @@ test('View a report', async ({ context, page }) => {
 		const a5 = table.getRow(0);
 		expect(await a5.getName()).toBe('A5');
 		expect(await a5.getPath()).toBe('A5.pdf');
-		expect(await a5.getExpectedPath()).toBe('baseline/A5.pdf');
-		expect(await a5.getActualPath()).toBe('output/A5.pdf');
+		expect(await a5.getExpectedPath()).toBe('expected/A5.pdf');
+		expect(await a5.getActualPath()).toBe('actual/A5.pdf');
 		expect(await a5.getStatus()).toBe('Failed');
 		expect(await a5.getExecutionTime()).toBe('45.482');
 	});
@@ -48,8 +48,8 @@ test('View a report', async ({ context, page }) => {
 	await test.step('Check Two to One', async () => {
 		const letter = table.getRow(1);
 		expect(await letter.getPath()).toBe('category/Two to One.pdf');
-		expect(await letter.getExpectedPath()).toBe('baseline/category/Two to One.pdf');
-		expect(await letter.getActualPath()).toBe('output/category/Two to One.pdf');
+		expect(await letter.getExpectedPath()).toBe('expected/category/Two to One.pdf');
+		expect(await letter.getActualPath()).toBe('actual/category/Two to One.pdf');
 		expect(await letter.getStatus()).toBe('Failed');
 	});
 
@@ -68,8 +68,8 @@ test('View a report', async ({ context, page }) => {
 	await test.step('Check Letter', async () => {
 		const letter = table.getRow(1);
 		expect(await letter.getPath()).toBe('category/Letter.pdf');
-		expect(await letter.getExpectedPath()).toBe('baseline/category/Letter.pdf');
-		expect(await letter.getActualPath()).toBe('output/category/Letter.pdf');
+		expect(await letter.getExpectedPath()).toBe('expected/category/Letter.pdf');
+		expect(await letter.getActualPath()).toBe('actual/category/Letter.pdf');
 		expect(await letter.getStatus()).toBe('Passed');
 		expect(await letter.getDiffs().textContent()).toBe('');
 	});

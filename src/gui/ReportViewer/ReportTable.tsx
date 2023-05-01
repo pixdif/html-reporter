@@ -74,7 +74,7 @@ export default function ReportTable(props: ReportTableProps): JSX.Element {
 			<tbody>
 				{Object.entries(report.cases).map(([id, testCase]) => (
 					<ReportRow
-						key={`row-${testCase.path}`}
+						key={`row-${id}`}
 						id={id}
 						tolerance={config.tolerance}
 						showsMatchedCases={showsMatchedCases}

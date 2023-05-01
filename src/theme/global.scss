@@ -26,19 +26,14 @@ body {
 
 input[type="text"],
 input[type="number"] {
-	background: rgb(63, 63, 63);
-	border: rgb(63, 63, 63) 1px solid;
-	color: rgb(172, 172, 172);
+	background: var(--input-background);
+	border: var(--input-border) 1px solid;
+	color: var(--input-text);
 	padding: 0 0.5em;
 
 	width: 6em;
 	&.wide {
 		width: 12em;
-	}
-
-	&:hover,
-	&:focus {
-		border: rgb(0, 76, 121) 1px solid;
 	}
 }
 

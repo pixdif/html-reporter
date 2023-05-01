@@ -1,0 +1,26 @@
+input {
+	&[type="text"],
+	&[type="number"] {
+		background: var(--input-background);
+		border: var(--input-border) 1px solid;
+		color: var(--input-text);
+		padding: 0 0.5em;
+
+		width: 6em;
+		&.wide {
+			width: 12em;
+		}
+	}
+
+	&[type="number"] {
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+	}
+
+	&[type="checkbox"] {
+		accent-color: var(--input-accent);
+	}
+}

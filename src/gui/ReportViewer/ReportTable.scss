@@ -100,7 +100,7 @@ table.test-report {
 	tbody {
 		tr {
 			&:hover {
-				background: rgb(23, 23, 26);
+				background: var(--report-hover-background);
 			}
 		}
 	}

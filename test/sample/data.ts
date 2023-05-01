@@ -5,6 +5,7 @@ import { TestReport } from '@pixdif/model';
  */
 
 const testReport: TestReport = {
+	title: 'Sample Report of PDF Files',
 	config: {
 		tolerance: 0.001,
 		wsEndpoint: 'localhost:20190',

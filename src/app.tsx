@@ -24,6 +24,10 @@ import './theme/global.scss';
 		return;
 	}
 
+	if (report.title) {
+		document.title = report.title;
+	}
+
 	const params = new URLSearchParams(window.location.search);
 	const caseId = params.get('case');
 	if (!caseId) {

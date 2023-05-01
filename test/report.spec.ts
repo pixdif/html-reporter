@@ -35,6 +35,10 @@ test('View a report', async ({ context, page }) => {
 		expect(await rows.count()).toBe(5);
 	});
 
+	await test.step('Customize title', async () => {
+		expect(await page.title()).toBe('Sample Report of PDF Files');
+	});
+
 	await test.step('Check A5', async () => {
 		const a5 = table.getRow(0);
 		expect(await a5.getName()).toBe('A5');

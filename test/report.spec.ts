@@ -37,6 +37,7 @@ test('View a report', async ({ context, page }) => {
 
 	await test.step('Check A5', async () => {
 		const a5 = table.getRow(0);
+		expect(await a5.getName()).toBe('A5');
 		expect(await a5.getPath()).toBe('A5.pdf');
 		expect(await a5.getExpectedPath()).toBe('baseline/A5.pdf');
 		expect(await a5.getActualPath()).toBe('output/A5.pdf');

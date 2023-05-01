@@ -70,7 +70,7 @@ export default function DiffViewer({
 
 	return (
 		<div className="diff-viewer">
-			<h2>{testCase.actual}</h2>
+			<h2>{testCase.path ? (<a href={testCase.path}>{testCase.name}</a>) : testCase.name}</h2>
 			<div className="control-panel">
 				<input
 					type="checkbox"

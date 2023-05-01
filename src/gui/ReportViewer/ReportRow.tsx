@@ -61,6 +61,7 @@ export default function ReportRow(props: ReportRowProps): JSX.Element | null {
 	} = props;
 
 	const {
+		name,
 		path,
 		expected,
 		actual,
@@ -77,7 +78,11 @@ export default function ReportRow(props: ReportRowProps): JSX.Element | null {
 	const viewerUrl = `index.html?case=${id}`;
 	return (
 		<tr>
-			<td className="url" title={comment}>{path}</td>
+			<td className="url" title={comment}>
+				{path ? (
+					<a href={path}>{name}</a>
+				) : name}
+			</td>
 			<td>
 				<a href={expected} target="_blank" rel="noreferrer">View</a>
 			</td>

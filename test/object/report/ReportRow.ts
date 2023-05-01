@@ -5,8 +5,12 @@ export default class ReportRow extends BasicLocator {
 		return this.locator('td').nth(index);
 	}
 
-	getPath() {
+	getName() {
 		return this.getCell(0).textContent();
+	}
+
+	getPath() {
+		return this.getCell(0).locator('a').getAttribute('href');
 	}
 
 	getExpected() {

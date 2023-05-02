@@ -96,9 +96,7 @@ export default function ReportRow(props: ReportRowProps): JSX.Element | null {
 				<StatusIcon status={status} />
 			</td>
 			<td className="view-all">
-				{status !== TestStatus.ActualNotFound && (
-					<a target="_blank" rel="noreferrer" href={viewerUrl}>View All</a>
-				)}
+				<a target="_blank" rel="noreferrer" href={viewerUrl}>View All</a>
 			</td>
 			<td className="difference">
 				{details && (

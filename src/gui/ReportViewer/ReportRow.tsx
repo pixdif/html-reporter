@@ -65,11 +65,16 @@ export default function ReportRow(props: ReportRowProps): JSX.Element | null {
 		path,
 		expected,
 		actual,
-		executionTime,
+		startTime,
+		endTime,
 		details = [],
 		status,
 		comment,
 	} = testCase;
+
+	const executionTime = endTime !== undefined && startTime !== undefined
+		? (endTime - startTime)
+		: undefined;
 
 	if (!showsMatchedCases && status === TestStatus.Matched) {
 		return null;

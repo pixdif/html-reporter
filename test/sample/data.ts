@@ -29,7 +29,8 @@ const testReport: TestReport = {
 					diff: 'image/A5/1.png',
 				},
 			],
-			executionTime: 45482,
+			startTime: 39503485,
+			endTime: 39503485 + 45482,
 		},
 		letter: {
 			name: 'Letter',

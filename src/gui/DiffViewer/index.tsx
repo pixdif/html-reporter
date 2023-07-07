@@ -2,12 +2,10 @@ import React from 'react';
 
 import {
 	Config,
-	ResponseStatus,
 	TestCase,
 	TestStatus,
 } from '@pixdif/model';
 
-import Client from '../../api/Client';
 import { Clickable } from '../../base/Clickable';
 import { makeToast } from '../../common/Toast';
 
@@ -18,19 +16,6 @@ import './styles.scss';
 interface DiffViewerProps {
 	config: Config;
 	testCase: TestCase;
-}
-
-function getCurrentDir(): string {
-	if (window.location.protocol !== 'file:') {
-		return '.';
-	}
-
-	const baseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
-	const myDir = baseUrl.startsWith('file://') ? baseUrl.substring(7) : baseUrl;
-	if (myDir.match(/^\/\w+:/)) {
-		return myDir.substring(1);
-	}
-	return myDir;
 }
 
 export default function DiffViewer({
@@ -44,13 +29,20 @@ export default function DiffViewer({
 	};
 
 	const updateBaseline = async (): Promise<void> => {
-		const client = new Client(config.wsEndpoint);
+		const payload = {
+			expected: testCase.expected,
+			actual: testCase.actual,
+		};
 		try {
-			await client.connect();
-			const currentDir = getCurrentDir();
-			const res = await client.updateSnapshot(`${currentDir}/${testCase.expected}`, `${currentDir}/${testCase.actual}`);
+			const res = await window.fetch('/api/snapshots', {
+				method: 'POST',
+				headers: {
+					'content-type': 'application/json',
+				},
+				body: JSON.stringify(payload),
+			});
 			switch (res.status) {
-			case ResponseStatus.Ok:
+			case 200:
 				makeToast('The snapshot has been successfully updated.');
 				break;
 			default:
@@ -58,9 +50,7 @@ export default function DiffViewer({
 				break;
 			}
 		} catch (error) {
-			makeToast('Failed to connect to the server. Please run `node server`', 'error');
-		} finally {
-			client.disconnect();
+			makeToast('Failed to connect to the server. Please run `pixdif serve`', 'error');
 		}
 	};
 
@@ -120,7 +110,9 @@ export default function DiffViewer({
 					);
 				})}
 			</ul>
-			{(status === TestStatus.ExpectedNotFound || status === TestStatus.Mismatched) && (
+			{window.location.protocol !== 'file:'
+			&& (status === TestStatus.ExpectedNotFound || status === TestStatus.Mismatched)
+			&& (
 				<div className="button-area">
 					<Clickable<HTMLButtonElement>
 						component="button"

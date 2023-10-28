@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 import ReportViewer from './page/ReportViewer';
 import DiffViewer from './page/DiffViewer';
-import loadReport from '../loadReport';
+import loadReport from './util/loadReport';
 
 import './theme/global.scss';
 

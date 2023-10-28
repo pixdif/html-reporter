@@ -22,11 +22,11 @@ module.exports = function config(env, argv) {
 			],
 		},
 		entry: {
-			app: './src/gui/index.tsx',
+			app: path.resolve(__dirname, 'index.tsx'),
 		},
 		output: {
 			filename: 'static/[name].js',
-			path: path.resolve(__dirname, 'dist'),
+			path: path.resolve(__dirname, '../../dist'),
 		},
 		optimization: {
 			splitChunks: {

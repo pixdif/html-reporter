@@ -6,7 +6,6 @@ import {
 	TestStatus,
 } from '@pixdif/model';
 
-import { Clickable } from '../../base/Clickable';
 import { makeToast } from '../../common/Toast';
 
 import DiffLayout from '../DiffLayout';
@@ -114,12 +113,12 @@ export default function DiffViewer({
 			&& (status === TestStatus.ExpectedNotFound || status === TestStatus.Mismatched)
 			&& (
 				<div className="button-area">
-					<Clickable<HTMLButtonElement>
-						component="button"
-						onTrigger={updateBaseline}
+					<button
+						type="button"
+						onClick={updateBaseline}
 					>
 						{testCase.status === TestStatus.ExpectedNotFound ? 'Add Baseline' : 'Update Baseline'}
-					</Clickable>
+					</button>
 				</div>
 			)}
 		</div>

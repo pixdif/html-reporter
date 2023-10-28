@@ -1,8 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Clickable } from '../../base/Clickable';
-
 import './index.scss';
 
 interface CollapseProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -26,9 +24,11 @@ export default function Collapse({
 	return (
 		<div className={classNames('collapse', [className], { collapsed })} {...otherProps}>
 			<div className="header">
-				<Clickable
+				<button
+					type="button"
 					className="arrow"
-					onTrigger={toggle}
+					onClick={toggle}
+					aria-label={collapsed ? 'Expand' : 'Collapse'}
 				/>
 				{header}
 			</div>

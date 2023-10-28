@@ -8,7 +8,7 @@ import {
 
 import { makeToast } from '../../common/Toast';
 
-import DiffLayout from '../DiffLayout';
+import DiffLayout from './DiffLayout';
 
 import './styles.scss';
 

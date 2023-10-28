@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Clickable from '../../base/Clickable';
-
 interface FullscreenViewerProps {
 	className?: string;
 	children?: React.ReactNode;
@@ -15,7 +13,7 @@ export default function FullscreenViewer(props: FullscreenViewerProps): JSX.Elem
 		onFullscreenChange,
 	} = props;
 
-	const viewer = React.useRef<HTMLDivElement>(null);
+	const viewer = React.useRef<HTMLButtonElement>(null);
 
 	const toggleFullscreen = React.useCallback(() => {
 		const me = viewer.current;
@@ -43,12 +41,13 @@ export default function FullscreenViewer(props: FullscreenViewerProps): JSX.Elem
 	}, [viewer]);
 
 	return (
-		<Clickable
+		<button
+			type="button"
 			className={className}
 			ref={viewer}
-			onTrigger={toggleFullscreen}
+			onClick={toggleFullscreen}
 		>
 			{children}
-		</Clickable>
+		</button>
 	);
 }

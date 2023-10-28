@@ -22,7 +22,7 @@ module.exports = function config(env, argv) {
 			],
 		},
 		entry: {
-			app: './src/app.tsx',
+			app: './src/gui/index.tsx',
 		},
 		output: {
 			filename: 'static/[name].js',
@@ -76,7 +76,7 @@ module.exports = function config(env, argv) {
 			new HtmlWebpackPlugin({
 				title: 'Test Report Viewer',
 				output: 'index.html',
-				template: 'src/index.html',
+				template: 'src/gui/index.html',
 			}),
 		],
 		devtool: mode === 'production' ? undefined : 'source-map',

@@ -1,9 +1,9 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
-import ReportViewer from './gui/ReportViewer';
-import DiffViewer from './gui/DiffViewer';
-import loadReport from './loadReport';
+import ReportViewer from './page/ReportViewer';
+import DiffViewer from './page/DiffViewer';
+import loadReport from '../loadReport';
 
 import './theme/global.scss';
 
@@ -17,7 +17,7 @@ import './theme/global.scss';
 	const report = loadReport();
 	if (!report) {
 		app.render(
-			<div className="tips">
+			<div role="status" className="tips">
 				<p>Failed to load test report.</p>
 			</div>,
 		);

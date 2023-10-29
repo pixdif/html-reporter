@@ -4,7 +4,7 @@
   "description": "PixDif HTML Reporter",
   "main": "dist",
   "scripts": {
-    "start": "webpack serve --mode=development",
+    "start": "webpack serve  --config=src/gui/webpack.config.js --mode=development",
     "build": "npm run build-gui && npm run build-cli",
     "build-gui": "webpack --config=src/gui/webpack.config.js",
     "debug-gui": "webpack --config=src/gui/webpack.config.js --mode=development",
@@ -31,8 +31,10 @@
   },
   "homepage": "https://github.com/pixdif/html-reporter#readme",
   "dependencies": {
+    "@cindi/aria-lit": "^0.0.1",
     "@pixdif/model": "^0.8.0",
     "classnames": "^2.3.2",
+    "lit": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

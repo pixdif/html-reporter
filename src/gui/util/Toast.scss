@@ -1,26 +1,32 @@
-
-.toast {
+#toast-viewport {
 	position: fixed;
-	top: calc(50% + 20px);
-	left: 50%;
-	width: 20%;
-	margin-left: -150px;
-	opacity: 0.5;
-	transition: top 0.3s, opacity 0.3s;
+	top: 48vh;
+	left: 50vw;
+	transform: translateX(-50%);
+}
+
+cindi-toast {
+	display: block;
+	position: relative;
+	top: 20px;
+	opacity: 0;
+	transition: top 100ms linear, opacity 100ms linear;
 	background: var(--toast-background);
 	color: var(--toast-text);
+	border-radius: 6px;
 	font-size: 11pt;
 	line-height: 1.5;
 	padding: 1em 1.5em;
+	margin: 1em 0;
 
-	&.appear {
+	&[data-state="enter"] {
 		opacity: 1;
-		top: 50%;
+		top: 0;
 	}
 
-	&.disappear {
+	&[data-state="leave"] {
 		opacity: 0;
-		top: 50%;
+		top: -10px;
 	}
 
 	&.info {

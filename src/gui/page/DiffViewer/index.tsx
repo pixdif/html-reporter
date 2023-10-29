@@ -6,7 +6,7 @@ import {
 	TestStatus,
 } from '@pixdif/model';
 
-import { makeToast } from '../../common/Toast';
+import makeToast from '../../util/makeToast';
 
 import DiffLayout from './DiffLayout';
 

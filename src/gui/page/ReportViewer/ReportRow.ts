@@ -6,10 +6,7 @@ import {
 } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import {
-	TestCase,
-	TestStatus,
-} from '@pixdif/model';
+import type { TestCase } from '@pixdif/model';
 
 import './DiffList';
 import './StatusIcon';
@@ -22,8 +19,6 @@ class ReportRow extends LitElement {
 
 	@property({ attribute: false }) tolerance?: number;
 
-	@property({ attribute: false }) showsMatchedCases?: boolean;
-
 	@property({ attribute: false }) showsMatchedPages?: boolean;
 
 	protected override createRenderRoot(): HTMLElement {
@@ -35,7 +30,6 @@ class ReportRow extends LitElement {
 			id,
 			testCase,
 			tolerance,
-			showsMatchedCases,
 			showsMatchedPages,
 		} = this;
 		if (!testCase) {
@@ -57,10 +51,6 @@ class ReportRow extends LitElement {
 		const executionTime = endTime !== undefined && startTime !== undefined
 			? (endTime - startTime)
 			: undefined;
-
-		if (!showsMatchedCases && status === TestStatus.Matched) {
-			return html``;
-		}
 
 		const viewerUrl = `index.html?case=${id}`;
 		return html`

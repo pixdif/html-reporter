@@ -81,15 +81,20 @@ class ReportTable extends LitElement {
 				</tr>
 			</thead>
 			<tbody>
-				${Object.entries(report.cases).map(([id, testCase]) => html`
-					<report-row
-						id=${id}
-						.tolerance=${config.tolerance}
-						.showsMatchedCases=${showsMatchedCases}
-						.showsMatchedPages=${showsMatchedPages}
-						.testCase=${testCase}
-					></report-row>
-				`)}
+				${Object.entries(report.cases).map(([id, testCase]) => {
+		if (!showsMatchedCases && testCase.status === TestStatus.Matched) {
+			return html`nothing`;
+		}
+		return html`
+			<report-row
+				id=${id}
+				.tolerance=${config.tolerance}
+				.showsMatchedCases=${showsMatchedCases}
+				.showsMatchedPages=${showsMatchedPages}
+				.testCase=${testCase}
+			></report-row>
+		`;
+	})}
 			</tbody>
 		`;
 	}

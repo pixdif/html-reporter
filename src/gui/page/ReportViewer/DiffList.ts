@@ -61,7 +61,6 @@ class DiffList extends LitElement {
 
 		return html`
 					<a
-						key=${(showsMatchedPages ? 'a' : 's') + (expanded ? 'e' : 'c') + index}
 						class=${className}
 						target="_blank"
 						rel="noreferrer"

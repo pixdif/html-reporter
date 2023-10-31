@@ -81,7 +81,6 @@ class ReportTable extends LitElement {
 			<tbody>
 				${Object.entries(report.cases).map(([id, testCase]) => html`
 					<report-row
-						key=${`row-${id}`}
 						id=${id}
 						.tolerance=${config.tolerance}
 						.showsMatchedCases=${showsMatchedCases}

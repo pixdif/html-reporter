@@ -4,7 +4,7 @@ import {
 	html,
 	nothing,
 } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import {
 	TestCase,
@@ -16,13 +16,13 @@ import './StatusIcon';
 
 @customElement('report-row')
 class ReportRow extends LitElement {
-	testCase?: TestCase;
+	@property({ attribute: false }) testCase?: TestCase;
 
-	tolerance?: number;
+	@property({ attribute: false }) tolerance?: number;
 
-	showsMatchedCases?: boolean;
+	@property({ attribute: false }) showsMatchedCases?: boolean;
 
-	showsMatchedPages?: boolean;
+	@property({ attribute: false }) showsMatchedPages?: boolean;
 
 	protected override createRenderRoot(): HTMLElement {
 		return this;

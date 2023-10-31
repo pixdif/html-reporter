@@ -54,9 +54,7 @@ class ReportRow extends LitElement {
 
 		const viewerUrl = `index.html?case=${id}`;
 		return html`
-			<td class="url" title=${ifDefined(comment)}>
-				${path ? html`<a href=${path}>${name}</a>` : name}
-			</td>
+			<td class="url" title=${ifDefined(comment)}>${path ? html`<a href=${path}>${name}</a>` : name}</td>
 			<td>
 				<a href=${expected} target="_blank" rel="noreferrer">View</a>
 			</td>

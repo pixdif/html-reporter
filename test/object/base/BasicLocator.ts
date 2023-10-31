@@ -19,4 +19,8 @@ export default class BasicLocator {
 	locator(selector: string, options?: LocatorOptions) {
 		return this.e.locator(selector, options);
 	}
+
+	getByRole(...args: Parameters<Locator['getByRole']>) {
+		return this.e.getByRole(...args);
+	}
 }

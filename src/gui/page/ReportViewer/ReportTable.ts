@@ -11,6 +11,8 @@ import './ReportTable.scss';
 
 @customElement('report-table')
 class ReportTable extends LitElement {
+	role = 'table';
+
 	report?: TestReport;
 
 	className = 'test-report';

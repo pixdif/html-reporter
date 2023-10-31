@@ -16,6 +16,8 @@ import './StatusIcon';
 
 @customElement('report-row')
 class ReportRow extends LitElement {
+	role = 'row';
+
 	@property({ attribute: false }) testCase?: TestCase;
 
 	@property({ attribute: false }) tolerance?: number;

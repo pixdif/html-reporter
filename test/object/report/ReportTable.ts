@@ -8,7 +8,7 @@ export default class ReportTable extends BasicLocator {
 	}
 
 	getRows() {
-		return this.locator('tbody tr');
+		return this.locator('tbody').getByRole('row');
 	}
 
 	getShowMatchedCases() {

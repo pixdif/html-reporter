@@ -11,4 +11,8 @@ export default class BasicPage {
 	locator(selector: string, options?: LocatorOptions) {
 		return this.page.locator(selector, options);
 	}
+
+	getByRole(...args: Parameters<Page['getByRole']>) {
+		return this.page.getByRole(...args);
+	}
 }

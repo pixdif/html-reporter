@@ -3,7 +3,7 @@ import ReportTable from './report/ReportTable';
 
 export default class ReportViewer extends BasicPage {
 	getTable() {
-		const table = this.locator('table');
+		const table = this.getByRole('table');
 		return new ReportTable(table);
 	}
 }

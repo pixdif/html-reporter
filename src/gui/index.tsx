@@ -31,11 +31,9 @@ import './theme/global.scss';
 	const params = new URLSearchParams(window.location.search);
 	const caseId = params.get('case');
 	if (!caseId) {
-		app.render(
-			<ReportViewer
-				report={report}
-			/>,
-		);
+		const viewer = new ReportViewer();
+		viewer.report = report;
+		root.appendChild(viewer);
 		return;
 	}
 

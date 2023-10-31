@@ -1,8 +1,10 @@
 
-.report-viewer {
+report-viewer {
+	display: block;
 	text-align: center;
 
-	.brief {
+	profile-area {
+		display: block;
 		height: 3em;
 		line-height: 3em;
 

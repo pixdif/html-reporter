@@ -1,10 +1,11 @@
 import { LitElement, TemplateResult, html } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import { TestReport } from '@pixdif/model';
 
 import './ProfileArea';
+import './ReportTable';
 
 import './index.scss';
-import { customElement } from 'lit/decorators.js';
 
 @customElement('report-viewer')
 class ReportViewer extends LitElement {
@@ -22,6 +23,7 @@ class ReportViewer extends LitElement {
 
 		return html`
 			<profile-area .report=${report}></profile-area>
+			<report-table .report=${report}></report-table>
 		`;
 	}
 }

@@ -1,9 +1,14 @@
 @import '../../theme/ui/color.scss';
 
-table.test-report {
+report-table {
+	display: table;
 	width: 100%;
 	border-collapse: collapse;
 	background: var(--secondary-background);
+
+	report-row {
+		display: table-row;
+	}
 
 	.mismatched {
 		color: var(--test-mismatched);
@@ -29,7 +34,7 @@ table.test-report {
 		color: var(--test-matched);
 	}
 
-	.status {
+	status-icon {
 		display: inline-block;
 		color: var(--test-status-text);
 		border-radius: 2px;
@@ -37,27 +42,27 @@ table.test-report {
 		line-height: 1.5em;
 		font-size: 8pt;
 
-		&.mismatched {
+		&[status="mismatched"] {
 			background: var(--test-mismatched);
 			width: 4em;
 		}
 
-		&.matched {
+		&[status="matched"] {
 			background: var(--test-matched);
 			width: 4em;
 		}
 
-		&.converting {
+		&[status="converting"] {
 			background: var(--test-converting);
 			padding: 0 0.6em;
 		}
 
-		&.comparing {
+		&[status="comparing"] {
 			background: var(--test-comparing);
 			padding: 0 0.6em;
 		}
 
-		&.progress-bar {
+		&[status="progress-bar"] {
 			> .current::after {
 				content: ' / ';
 			}
@@ -98,7 +103,7 @@ table.test-report {
 	}
 
 	tbody {
-		tr {
+		table-row {
 			&:hover {
 				background: var(--report-hover-background);
 			}

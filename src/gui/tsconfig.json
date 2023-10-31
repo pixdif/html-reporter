@@ -8,6 +8,7 @@
 		"strict": true,
 		"allowSyntheticDefaultImports": true,
 		"sourceMap": true,
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"useDefineForClassFields": false
 	}
 }

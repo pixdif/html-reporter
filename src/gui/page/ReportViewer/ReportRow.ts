@@ -2,7 +2,6 @@ import {
 	LitElement,
 	TemplateResult,
 	html,
-	nothing,
 } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -62,7 +61,7 @@ class ReportRow extends LitElement {
 				<a href=${actual} target="_blank" rel="noreferrer">View</a>
 			</td>
 			<td>
-				${executionTime !== undefined ? (executionTime / 1000).toFixed(3) : nothing}
+				${executionTime !== undefined ? (executionTime / 1000).toFixed(3) : ''}
 			</td>
 			<td>
 				<status-icon .status=${status}></status-icon>

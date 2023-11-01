@@ -6,7 +6,7 @@ export default class ReportRow extends BasicLocator {
 	}
 
 	getName() {
-		return this.getCell(0).textContent();
+		return this.getCell(0).innerText();
 	}
 
 	getPath() {
@@ -30,11 +30,11 @@ export default class ReportRow extends BasicLocator {
 	}
 
 	getExecutionTime() {
-		return this.getCell(3).textContent();
+		return this.getCell(3).innerText();
 	}
 
 	getStatus() {
-		return this.getCell(4).textContent();
+		return this.getCell(4).innerText();
 	}
 
 	getViewAll() {

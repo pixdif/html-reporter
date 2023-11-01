@@ -83,7 +83,7 @@ class ReportTable extends LitElement {
 			<tbody>
 				${Object.entries(report.cases).map(([id, testCase]) => {
 		if (!showsMatchedCases && testCase.status === TestStatus.Matched) {
-			return html`nothing`;
+			return '';
 		}
 		return html`
 			<report-row

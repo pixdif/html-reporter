@@ -75,7 +75,7 @@ test('View a report', async ({ context, page }) => {
 		expect(await letter.getExpectedPath()).toBe('expected/category/Letter.pdf');
 		expect(await letter.getActualPath()).toBe('actual/category/Letter.pdf');
 		expect(await letter.getStatus()).toBe('Passed');
-		expect(await letter.getDiffs().textContent()).toBe('');
+		expect(await letter.getDiffs().innerText()).toBe('');
 	});
 
 	await test.step('Toggle matched pages', async () => {
@@ -87,7 +87,7 @@ test('View a report', async ({ context, page }) => {
 		});
 
 		const letter = table.getRow(1);
-		expect(await letter.getDiffs().textContent()).toBe('0.000%');
+		expect(await letter.getDiffs().innerText()).toBe('0.000%');
 	});
 
 	await test.step('Open a specific test case', async () => {

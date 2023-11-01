@@ -33,15 +33,10 @@
   "dependencies": {
     "@cindi/aria-lit": "^0.0.2",
     "@pixdif/model": "^0.8.0",
-    "classnames": "^2.3.2",
-    "lit": "^3.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "lit": "^3.0.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.38.1",
-    "@types/react": "^18.2.27",
-    "@types/react-dom": "^18.2.12",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
     "css-loader": "^6.8.1",

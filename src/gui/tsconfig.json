@@ -4,7 +4,6 @@
 		"target": "ES2022",
 		"module": "ES2022",
 		"moduleResolution": "Bundler",
-		"jsx": "react",
 		"strict": true,
 		"allowSyntheticDefaultImports": true,
 		"sourceMap": true,

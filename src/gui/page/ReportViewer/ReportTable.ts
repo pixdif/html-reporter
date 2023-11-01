@@ -9,7 +9,7 @@ import {
 import './ReportRow';
 import './ReportTable.scss';
 
-@customElement('report-table')
+@customElement('pixdif-report-table')
 class ReportTable extends LitElement {
 	role = 'table';
 
@@ -86,13 +86,13 @@ class ReportTable extends LitElement {
 			return '';
 		}
 		return html`
-			<report-row
+			<pixdif-report-row
 				id=${id}
 				.tolerance=${config.tolerance}
 				.showsMatchedCases=${showsMatchedCases}
 				.showsMatchedPages=${showsMatchedPages}
 				.testCase=${testCase}
-			></report-row>
+			></pixdif-report-row>
 		`;
 	})}
 			</tbody>
@@ -112,6 +112,6 @@ export default ReportTable;
 
 declare global {
 	interface HTMLElementTagNameMap {
-		'report-table': ReportTable;
+		'pixdif-report-table': ReportTable;
 	}
 }

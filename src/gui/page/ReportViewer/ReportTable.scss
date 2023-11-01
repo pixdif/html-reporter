@@ -1,12 +1,12 @@
 @import '../../theme/ui/color.scss';
 
-report-table {
+pixdif-report-table {
 	display: table;
 	width: 100%;
 	border-collapse: collapse;
 	background: var(--secondary-background);
 
-	report-row {
+	pixdif-report-row {
 		display: table-row;
 	}
 
@@ -34,7 +34,7 @@ report-table {
 		color: var(--test-matched);
 	}
 
-	status-icon {
+	pixdif-status-icon {
 		display: inline-block;
 		color: var(--test-status-text);
 		border-radius: 2px;
@@ -103,7 +103,7 @@ report-table {
 	}
 
 	tbody {
-		table-row {
+		pixdif-table-row {
 			&:hover {
 				background: var(--report-hover-background);
 			}

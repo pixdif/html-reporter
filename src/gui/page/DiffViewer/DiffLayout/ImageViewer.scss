@@ -1,4 +1,6 @@
 .image-viewer {
+	flex: 1 1 auto;
+	display: block;
 	cursor: pointer;
 	position: relative;
 	overflow: auto;

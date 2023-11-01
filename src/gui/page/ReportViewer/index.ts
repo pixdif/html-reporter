@@ -7,7 +7,7 @@ import './ReportTable';
 
 import './index.scss';
 
-@customElement('report-viewer')
+@customElement('pixdif-report-viewer')
 class ReportViewer extends LitElement {
 	report?: TestReport;
 
@@ -22,8 +22,8 @@ class ReportViewer extends LitElement {
 		}
 
 		return html`
-			<profile-area .report=${report}></profile-area>
-			<report-table .report=${report}></report-table>
+			<pixdif-profile-area .report=${report}></pixdif-profile-area>
+			<pixdif-report-table .report=${report}></pixdif-report-table>
 		`;
 	}
 }
@@ -32,6 +32,6 @@ export default ReportViewer;
 
 declare global {
   interface HTMLElementTagNameMap {
-    'report-viewer': ReportViewer;
+    'pixdif-report-viewer': ReportViewer;
   }
 }

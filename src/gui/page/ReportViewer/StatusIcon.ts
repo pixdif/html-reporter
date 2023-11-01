@@ -2,7 +2,7 @@ import { Progress, TestStatus } from '@pixdif/model';
 import { LitElement, TemplateResult, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-@customElement('status-icon')
+@customElement('pixdif-status-icon')
 class StatusIcon extends LitElement {
 	@property({
 		type: Number,
@@ -57,6 +57,6 @@ export default StatusIcon;
 
 declare global {
 	interface HTMLElementTagNameMap {
-		'status-icon': StatusIcon;
+		'pixdif-status-icon': StatusIcon;
 	}
 }

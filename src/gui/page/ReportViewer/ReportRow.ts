@@ -10,7 +10,7 @@ import type { TestCase } from '@pixdif/model';
 import './DiffList';
 import './StatusIcon';
 
-@customElement('report-row')
+@customElement('pixdif-report-row')
 class ReportRow extends LitElement {
 	role = 'row';
 
@@ -64,20 +64,20 @@ class ReportRow extends LitElement {
 				${executionTime !== undefined ? (executionTime / 1000).toFixed(3) : ''}
 			</td>
 			<td>
-				<status-icon .status=${status}></status-icon>
+				<pixdif-status-icon .status=${status}></pixdif-status-icon>
 			</td>
 			<td class="view-all">
 				<a target="_blank" rel="noreferrer" href=${viewerUrl}>View All</a>
 			</td>
 			<td class="difference">
 				${details && html`
-					<diff-list
+					<pixdif-diff-list
 						id=${id}
 						.details=${details}
 						.showsMatchedPages=${showsMatchedPages}
 						.diffThreshold=${tolerance}
 					>
-					</diff-list>
+					</pixdif-diff-list>
 				`}
 			</td>
 		`;

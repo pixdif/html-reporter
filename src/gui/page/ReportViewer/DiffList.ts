@@ -13,7 +13,7 @@ function diffLevel(ratio: number): number {
 	return 1;
 }
 
-@customElement('diff-list')
+@customElement('pixdif-diff-list')
 class DiffList extends LitElement {
 	@property({ attribute: false }) details?: TestPoint[];
 
@@ -84,6 +84,6 @@ export default DiffList;
 
 declare global {
   interface HTMLElementTagNameMap {
-    'diff-list': DiffList;
+    'pixdif-diff-list': DiffList;
   }
 }

@@ -20,7 +20,7 @@ export interface ProfileAreaProps {
 	report?: TestReport;
 }
 
-@customElement('profile-area')
+@customElement('pixdif-profile-area')
 class ProfileArea extends LitElement implements ProfileAreaProps {
 	report?: TestReport;
 
@@ -68,6 +68,6 @@ export default ProfileArea;
 
 declare global {
   interface HTMLElementTagNameMap {
-    'profile-area': ProfileArea;
+    'pixdif-profile-area': ProfileArea;
   }
 }

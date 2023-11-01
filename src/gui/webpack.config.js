@@ -15,14 +15,12 @@ module.exports = function config(env, argv) {
 		target: 'web',
 		resolve: {
 			extensions: [
-				'.ts',
-				'.tsx',
 				'.js',
-				'.jsx',
+				'.ts',
 			],
 		},
 		entry: {
-			app: path.resolve(__dirname, 'index.tsx'),
+			app: path.resolve(__dirname, 'index.ts'),
 		},
 		output: {
 			filename: 'static/[name].js',
@@ -43,9 +41,12 @@ module.exports = function config(env, argv) {
 		module: {
 			rules: [
 				{
-					test: /\.tsx?$/,
+					test: /\.[tj]s$/,
 					exclude: /node_modules/,
 					use: 'ts-loader',
+					resolve: {
+						fullySpecified: false,
+					},
 				},
 				{
 					test: /\.scss$/,

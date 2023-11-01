@@ -1,6 +1,3 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-
 import ReportViewer from './page/ReportViewer';
 import DiffViewer from './page/DiffViewer';
 import loadReport from './util/loadReport';
@@ -13,14 +10,13 @@ import './theme/global.scss';
 		return;
 	}
 
-	const app = createRoot(root);
 	const report = loadReport();
 	if (!report) {
-		app.render(
-			<div role="status" className="tips">
-				<p>Failed to load test report.</p>
-			</div>,
-		);
+		const status = document.createElement('div');
+		status.role = 'status';
+		status.className = 'tips';
+		status.textContent = 'Failed to load test report.';
+		root.appendChild(status);
 		return;
 	}
 
@@ -38,14 +34,10 @@ import './theme/global.scss';
 	}
 
 	const testCase = report.cases[caseId];
-	if (!testCase) {
-		return;
+	if (testCase) {
+		const viewer = new DiffViewer();
+		viewer.config = report.config;
+		viewer.testCase = testCase;
+		root.appendChild(viewer);
 	}
-
-	app.render(
-		<DiffViewer
-			config={report.config}
-			testCase={testCase}
-		/>,
-	);
 }());

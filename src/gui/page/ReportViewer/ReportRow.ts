@@ -6,7 +6,7 @@ import {
 import { customElement, property } from 'lit/decorators.js';
 import type { ColumnDefinition, TestCase } from '@pixdif/model';
 
-import './DiffList';
+import './DiffRatios';
 import './StatusIcon';
 
 @customElement('pixdif-report-row')
@@ -65,13 +65,13 @@ class ReportRow extends LitElement {
 			</td>
 			<td class="difference">
 				${details && html`
-					<pixdif-diff-list
+					<pixdif-diff-ratios
 						id=${id}
 						.details=${details}
 						.showsMatchedPages=${showsMatchedPages}
 						.diffThreshold=${tolerance}
 					>
-					</pixdif-diff-list>
+					</pixdif-diff-ratios>
 				`}
 			</td>
 		`;

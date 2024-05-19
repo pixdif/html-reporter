@@ -13,8 +13,8 @@ function diffLevel(ratio: number): number {
 	return 1;
 }
 
-@customElement('pixdif-diff-list')
-class DiffList extends LitElement {
+@customElement('pixdif-diff-ratios')
+class DiffRatios extends LitElement {
 	@property({ attribute: false }) details?: TestPoint[];
 
 	@property({ attribute: false }) showsMatchedPages?: boolean;
@@ -80,10 +80,10 @@ class DiffList extends LitElement {
 	};
 }
 
-export default DiffList;
+export default DiffRatios;
 
 declare global {
   interface HTMLElementTagNameMap {
-    'pixdif-diff-list': DiffList;
+    'pixdif-diff-details': DiffRatios;
   }
 }

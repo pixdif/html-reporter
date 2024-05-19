@@ -67,7 +67,9 @@ class ReportTable extends LitElement {
 					<td>Actual</td>
 					${extraColumns.map((col) => html`<td>${col[1]}</td>`)}
 					<td>Result</td>
-					<td>Images</td>
+					<td>
+						<a href="index.html?mode=flow">Images</a>
+					</td>
 					<td>
 						Difference
 						<div class="float-options">

@@ -1,7 +1,6 @@
 import type { TestReport } from '@pixdif/model';
 
 import ReportViewer from './page/ReportViewer';
-import DiffFlow from './page/DiffFlow';
 import DiffViewer from './page/DiffViewer';
 import loadReport from './util/loadReport';
 
@@ -11,16 +10,10 @@ function renderReport(report: TestReport): HTMLElement | undefined {
 	const params = new URLSearchParams(window.location.search);
 	const caseId = params.get('case');
 	if (!caseId) {
-		const mode = params.get('mode') ?? 'table';
-		if (mode === 'table') {
-			const viewer = new ReportViewer();
-			viewer.report = report;
-			return viewer;
-		}
-
-		const flow = new DiffFlow();
-		flow.report = report;
-		return flow;
+		const viewer = new ReportViewer();
+		viewer.mode = params.get('mode') ?? 'table';
+		viewer.report = report;
+		return viewer;
 	}
 
 	const testCase = report.cases[caseId];

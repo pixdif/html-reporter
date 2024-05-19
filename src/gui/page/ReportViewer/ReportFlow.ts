@@ -4,8 +4,10 @@ import { TestReport } from '@pixdif/model';
 
 import '../DiffViewer';
 
-@customElement('pixdif-diff-flow')
-class DiffFlow extends LitElement {
+import './ReportFlow.scss';
+
+@customElement('pixdif-report-flow')
+class ReportFlow extends LitElement {
 	report?: TestReport;
 
 	protected override createRenderRoot(): HTMLElement {
@@ -28,16 +30,19 @@ class DiffFlow extends LitElement {
 
 		return html`${testCases.map(
 			(tc) => (
-				html`<pixdif-diff-viewer .config=${config} .testCase=${tc}></pixdif-diff-viewer>`
+				html`
+					<pixdif-diff-viewer .config=${config} .testCase=${tc}></pixdif-diff-viewer>
+					<hr>
+				`
 			),
 		)}`;
 	}
 }
 
-export default DiffFlow;
+export default ReportFlow;
 
 declare global {
   interface HTMLElementTagNameMap {
-    'pixdif-diff-flow': DiffFlow;
+    'pixdif-report-flow': ReportFlow;
   }
 }

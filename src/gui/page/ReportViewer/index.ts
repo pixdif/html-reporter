@@ -4,6 +4,7 @@ import { TestReport } from '@pixdif/model';
 
 import './ProfileArea';
 import './ReportTable';
+import './ReportFlow';
 
 import './index.scss';
 
@@ -11,8 +12,17 @@ import './index.scss';
 class ReportViewer extends LitElement {
 	report?: TestReport;
 
+	mode?: string;
+
 	protected override createRenderRoot(): HTMLElement {
 		return this;
+	}
+
+	#renderMain(): TemplateResult<1> {
+		if (this.mode === 'flow') {
+			return html`<pixdif-report-flow .report=${this.report}></pixdif-report-flow>`;
+		}
+		return html`<pixdif-report-table .report=${this.report}></pixdif-report-table>`;
 	}
 
 	override render(): TemplateResult<1> {
@@ -23,7 +33,7 @@ class ReportViewer extends LitElement {
 
 		return html`
 			<pixdif-profile-area .report=${report}></pixdif-profile-area>
-			<pixdif-report-table .report=${report}></pixdif-report-table>
+			${this.#renderMain()}
 		`;
 	}
 }

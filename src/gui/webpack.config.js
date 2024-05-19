@@ -82,7 +82,7 @@ module.exports = function config(env, argv) {
 		],
 		devtool: mode === 'production' ? undefined : 'source-map',
 		devServer: {
-			static: 'dist',
+			static: 'output',
 		},
 	};
 };

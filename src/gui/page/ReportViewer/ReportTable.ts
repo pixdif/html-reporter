@@ -33,6 +33,7 @@ class ReportTable extends LitElement {
 
 		const {
 			config,
+			extraColumns = [],
 		} = report;
 
 		const testCases = Object.values(report.cases);
@@ -43,6 +44,8 @@ class ReportTable extends LitElement {
 			),
 			showsMatchedPages = false,
 		} = this;
+
+		extraColumns.sort((a, b) => a[0] - b[0]);
 
 		return html`
 			<thead>
@@ -62,6 +65,7 @@ class ReportTable extends LitElement {
 					</td>
 					<td>Expected</td>
 					<td>Actual</td>
+					${extraColumns.map((col) => html`<td>${col[1]}</td>`)}
 					<td>Result</td>
 					<td>Images</td>
 					<td>
@@ -90,6 +94,7 @@ class ReportTable extends LitElement {
 				.tolerance=${config.tolerance}
 				.showsMatchedCases=${showsMatchedCases}
 				.showsMatchedPages=${showsMatchedPages}
+				.extraColumns=${extraColumns}
 				.testCase=${testCase}
 			></pixdif-report-row>
 		`;

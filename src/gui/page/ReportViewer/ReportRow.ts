@@ -4,7 +4,7 @@ import {
 	html,
 } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import type { TestCase } from '@pixdif/model';
+import type { ColumnDefinition, TestCase } from '@pixdif/model';
 
 import './DiffList';
 import './StatusIcon';
@@ -12,6 +12,8 @@ import './StatusIcon';
 @customElement('pixdif-report-row')
 class ReportRow extends LitElement {
 	role = 'row';
+
+	@property({ attribute: false }) extraColumns?: ColumnDefinition[];
 
 	@property({ attribute: false }) testCase?: TestCase;
 
@@ -26,6 +28,7 @@ class ReportRow extends LitElement {
 	override render(): TemplateResult<1> {
 		const {
 			id,
+			extraColumns = [],
 			testCase,
 			tolerance,
 			showsMatchedPages,
@@ -41,6 +44,7 @@ class ReportRow extends LitElement {
 			actual,
 			details = [],
 			status,
+			extra = {},
 		} = testCase;
 
 		const viewerUrl = `index.html?case=${id}`;
@@ -52,6 +56,7 @@ class ReportRow extends LitElement {
 			<td>
 				<a href=${actual} target="_blank" rel="noreferrer">View</a>
 			</td>
+			${extraColumns.map((col) => html`<td>${extra[col[2]]}</td>`)}
 			<td>
 				<pixdif-status-icon .status=${status}></pixdif-status-icon>
 			</td>

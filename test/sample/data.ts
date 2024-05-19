@@ -10,6 +10,10 @@ const testReport: TestReport = {
 		tolerance: 0.001,
 		wsEndpoint: 'localhost:20190',
 	},
+	extraColumns: [
+		[0, 'Start Time', 'startTime'],
+		[1, 'End Time', 'endTime'],
+	],
 	cases: {
 		a5: {
 			name: 'A5',
@@ -29,8 +33,10 @@ const testReport: TestReport = {
 					diff: 'image/A5/1.png',
 				},
 			],
-			startTime: 39503485,
-			endTime: 39503485 + 45482,
+			extra: {
+				startTime: 39503485,
+				endTime: 39503485 + 45482,
+			},
 		},
 		letter: {
 			name: 'Letter',

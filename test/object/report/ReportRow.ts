@@ -29,19 +29,15 @@ export default class ReportRow extends BasicLocator {
 		return this.getActual().getAttribute('href');
 	}
 
-	getExecutionTime() {
+	getStatus() {
 		return this.getCell(3).innerText();
 	}
 
-	getStatus() {
-		return this.getCell(4).innerText();
-	}
-
 	getViewAll() {
-		return this.getCell(5).locator('a');
+		return this.getCell(4).locator('a');
 	}
 
 	getDiffs() {
-		return this.getCell(6);
+		return this.getCell(5);
 	}
 }

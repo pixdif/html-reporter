@@ -4,7 +4,6 @@ import {
 	html,
 } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
 import type { TestCase } from '@pixdif/model';
 
 import './DiffList';
@@ -40,28 +39,18 @@ class ReportRow extends LitElement {
 			path,
 			expected,
 			actual,
-			startTime,
-			endTime,
 			details = [],
 			status,
-			comment,
 		} = testCase;
-
-		const executionTime = endTime !== undefined && startTime !== undefined
-			? (endTime - startTime)
-			: undefined;
 
 		const viewerUrl = `index.html?case=${id}`;
 		return html`
-			<td class="url" title=${ifDefined(comment)}>${path ? html`<a href=${path}>${name}</a>` : name}</td>
+			<td class="url">${path ? html`<a href=${path}>${name}</a>` : name}</td>
 			<td>
 				<a href=${expected} target="_blank" rel="noreferrer">View</a>
 			</td>
 			<td>
 				<a href=${actual} target="_blank" rel="noreferrer">View</a>
-			</td>
-			<td>
-				${executionTime !== undefined ? (executionTime / 1000).toFixed(3) : ''}
 			</td>
 			<td>
 				<pixdif-status-icon .status=${status}></pixdif-status-icon>

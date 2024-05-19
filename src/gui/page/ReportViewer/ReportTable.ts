@@ -62,7 +62,6 @@ class ReportTable extends LitElement {
 					</td>
 					<td>Expected</td>
 					<td>Actual</td>
-					<td>Time (s)</td>
 					<td>Result</td>
 					<td>Images</td>
 					<td>

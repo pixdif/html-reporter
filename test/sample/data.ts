@@ -51,8 +51,8 @@ const testReport: TestReport = {
 				{
 					name: 'Overview',
 					ratio: 0,
-					expected: 'image/Letter/expected/1.png',
-					actual: 'image/Letter/actual/1.png',
+					expected: 'image/category/Letter/expected/1.png',
+					actual: 'image/category/Letter/actual/1.png',
 				},
 			],
 		},

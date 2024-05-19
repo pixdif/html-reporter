@@ -16,6 +16,8 @@ import makeToast from '../../util/makeToast';
 import './DiffLayout';
 import './styles.scss';
 
+let ariaId = 1;
+
 @customElement('pixdif-diff-viewer')
 class DiffViewer extends LitElement {
 	config?: Config;
@@ -24,6 +26,8 @@ class DiffViewer extends LitElement {
 
 	@state()
 	protected matchedHidden = true;
+
+	#toggleMatchedId = `hide-matched-${ariaId++}`;
 
 	protected override createRenderRoot(): HTMLElement {
 		return this;
@@ -86,11 +90,11 @@ class DiffViewer extends LitElement {
 				<div class="control-panel">
 					<input
 						type="checkbox"
-						id="hide-matched"
+						id=${this.#toggleMatchedId}
 						?checked=${this.matchedHidden}
 						@change=${this.#toggleMatched}
 					/>
-					<label for="hide-matched">
+					<label for=${this.#toggleMatchedId}>
 						Hide matched pages
 						<span class="threshold">${toleranceText}</span>
 					</label>

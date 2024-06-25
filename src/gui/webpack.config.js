@@ -1,14 +1,16 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import path from 'path';
+import url from 'url';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+
+const rootDir = path.dirname(url.fileURLToPath(import.meta.url));
 
 /**
  * @param {Record<string, string>} env environment variables
  * @param {Record<string, string>} argv command-line arguments
  * @return {import('webpack').Configuration} webpack configuration
  */
-module.exports = function config(env, argv) {
+export default function config(env, argv) {
 	const mode = argv?.mode === 'development' ? 'development' : 'production';
 	return {
 		mode,
@@ -20,11 +22,11 @@ module.exports = function config(env, argv) {
 			],
 		},
 		entry: {
-			app: path.resolve(__dirname, 'index.ts'),
+			app: path.resolve(rootDir, 'index.ts'),
 		},
 		output: {
 			filename: 'static/[name].js',
-			path: path.resolve(__dirname, '../../dist'),
+			path: path.resolve(rootDir, '../../dist'),
 		},
 		optimization: {
 			splitChunks: {
@@ -85,4 +87,4 @@ module.exports = function config(env, argv) {
 			static: 'output',
 		},
 	};
-};
+}

@@ -1,11 +1,14 @@
 import fs from 'fs';
 import fsp from 'fs/promises';
 import path from 'path';
+import url from 'url';
 import {
 	TestStatus,
 	TestReport,
 	TestReportWriter,
 } from '@pixdif/model';
+
+const rootDir = path.dirname(url.fileURLToPath(import.meta.url));
 
 async function cp(from: string, to: string): Promise<void> {
 	const statFrom = fs.statSync(from);
@@ -30,7 +33,7 @@ const writeReport: TestReportWriter = async (
 	reportData: TestReport,
 	outputDir: string,
 ): Promise<void> => {
-	const distDir = __dirname;
+	const distDir = rootDir;
 	if (!fs.existsSync(outputDir)) {
 		await fsp.mkdir(outputDir, { recursive: true });
 	}

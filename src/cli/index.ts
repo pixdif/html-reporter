@@ -4,8 +4,8 @@ import path from 'path';
 import url from 'url';
 import {
 	TestStatus,
-	TestReport,
-	TestReportWriter,
+	type TestReport,
+	type TestReportWriter,
 } from '@pixdif/model';
 
 const rootDir = path.dirname(url.fileURLToPath(import.meta.url));

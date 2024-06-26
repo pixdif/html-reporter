@@ -25,6 +25,8 @@ jobs:
           cp ../package.json .
           cp ../LICENSE .
           npm pkg delete devDependencies
+          npm pkg delete dependencies.lit
+          npm pkg delete dependencies.@cindi/aria-lit
           npm pkg delete scripts
           npm pkg delete files
           npm pkg set main=index.js

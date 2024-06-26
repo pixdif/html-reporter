@@ -4,12 +4,12 @@ import path from 'path';
 import { rimraf } from 'rimraf';
 import { expect, test } from '@playwright/test';
 
-import cp from './util/cp';
+import cp from './util/cp.js';
 
-import ReportViewer from './object/ReportViewer';
+import ReportViewer from './object/ReportViewer.js';
 
-import sampleData from './sample/data';
-import generateReport from '../dist';
+import sampleData from './sample/data.js';
+import generateReport from '../dist/index.js';
 
 test.beforeAll(async () => {
 	if (fs.existsSync('output')) {

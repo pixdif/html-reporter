@@ -1,5 +1,5 @@
-import BasicLocator from '../base/BasicLocator';
-import ReportRow from './ReportRow';
+import BasicLocator from '../base/BasicLocator.js';
+import ReportRow from './ReportRow.js';
 
 export default class ReportTable extends BasicLocator {
 	getRow(index: number) {

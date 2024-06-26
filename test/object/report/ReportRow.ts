@@ -1,4 +1,4 @@
-import BasicLocator from '../base/BasicLocator';
+import BasicLocator from '../base/BasicLocator.js';
 
 export default class ReportRow extends BasicLocator {
 	getCell(index: number) {

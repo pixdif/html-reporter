@@ -1,5 +1,5 @@
-import BasicPage from './base/BasicPage';
-import ReportTable from './report/ReportTable';
+import BasicPage from './base/BasicPage.js';
+import ReportTable from './report/ReportTable.js';
 
 export default class ReportViewer extends BasicPage {
 	getTable() {

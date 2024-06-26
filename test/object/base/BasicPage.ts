@@ -1,5 +1,5 @@
 import { Page } from '@playwright/test';
-import { LocatorOptions } from './BasicLocator';
+import { LocatorOptions } from './BasicLocator.js';
 
 export default class BasicPage {
 	protected readonly page: Page;

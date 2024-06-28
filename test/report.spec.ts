@@ -1,7 +1,6 @@
 import fs from 'fs';
 import fsp from 'fs/promises';
 import path from 'path';
-import { rimraf } from 'rimraf';
 import { expect, test } from '@playwright/test';
 
 import cp from './util/cp.js';
@@ -13,7 +12,7 @@ import generateReport from '../dist/index.js';
 
 test.beforeAll(async () => {
 	if (fs.existsSync('output')) {
-		await rimraf('output');
+		await fsp.rm('output', { recursive: true, force: true });
 	}
 
 	await fsp.mkdir('output/image', { recursive: true });

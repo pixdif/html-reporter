@@ -24,6 +24,7 @@ jobs:
           cd dist
           cp ../package.json .
           cp ../LICENSE .
+          cp ../README.md .
           npm pkg delete devDependencies
           npm pkg delete dependencies.lit
           npm pkg delete dependencies.@cindi/aria-lit

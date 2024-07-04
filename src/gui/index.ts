@@ -47,6 +47,6 @@ function renderReport(report: TestReport): HTMLElement | undefined {
 
 	const viewer = renderReport(report);
 	if (viewer) {
-		document.body.appendChild(viewer);
+		root.appendChild(viewer);
 	}
 }());
